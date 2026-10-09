@@ -71,7 +71,7 @@ Implemented on 2026-10-09:
 - Database failures offer retry and do not display a successful confirmation unless the stored record is read back.
 - Tests execute the application's repository against real SQLite using Node's built-in SQLite driver. They verify reopening, duplicate prevention, undo isolation, local date boundaries, different time zones, and rejecting future schema versions.
 - TypeScript allows explicit .ts imports so the repository can run in Node's test runner as well as Metro.
-- Physical-phone checks of this new screen are pending. Native Expo SQLite bridge behavior and the actual layout still require device verification.
+- Basic daily-recording behavior was verified by the user on their Android phone through Expo Go on 2026-10-09. Larger-font layout, real midnight transitions, and standalone development-build behavior remain separate checks.
 
 ### Phone verification for this checkpoint
 
@@ -83,3 +83,12 @@ Implemented on 2026-10-09:
 6. Check scrolling and text when using a larger phone font size.
 
 Calendar, notification scheduling/cancellation, theme settings, and backups are separate checkpoints. These tests do not verify reminder delivery.
+
+### Reported phone results (2026-10-09)
+
+- Confirmation followed by reload: confirmed state persisted.
+- Undo followed by reload: unrecorded state persisted.
+- Canceling the pill confirmation followed by reload: state remained correct.
+- Closing and reopening Expo Go after confirmation: confirmed state persisted.
+
+The basic home-screen/daily-recording checkpoint is complete. These results do not establish reminder reliability or standalone-build behavior.

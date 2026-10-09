@@ -18,7 +18,7 @@ Each milestone ends with a reviewable result, appropriate verification, a descri
 - Minimal Expo/TypeScript scaffold, ESLint, Prettier, and GitHub checks are complete.
 - Starter screen verified by the user on their Android phone through Expo Go on 2026-10-09. Development-build and reminder verification remain pending.
 
-- First dark home screen and SQLite daily confirmation/undo are implemented. The new flow awaits phone verification.
+- First dark home screen and SQLite daily confirmation/undo are implemented. The user verified the basic recording flow on their phone on 2026-10-09.
 
 ## Later options
 
