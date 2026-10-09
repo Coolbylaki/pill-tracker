@@ -92,3 +92,22 @@ Calendar, notification scheduling/cancellation, theme settings, and backups are 
 - Closing and reopening Expo Go after confirmation: confirmed state persisted.
 
 The basic home-screen/daily-recording checkpoint is complete. These results do not establish reminder reliability or standalone-build behavior.
+
+## Monthly calendar checkpoint
+
+Implemented on 2026-10-09:
+
+- A Monday-first calendar below the confirmation card shows saved ticks, an outline for today, neutral unrecorded dates, and subdued future dates.
+- Previous/next month navigation and a return-to-current-month action. The default view follows the current month when the local date changes; deliberate navigation is preserved.
+- Monthly records are read from SQLite using inclusive start and exclusive end boundaries. No schema migration or synthetic user history is needed.
+- Confirmation, undo, and foreground refresh cause history to reload. Loading and errors are shown explicitly; failed queries do not appear as empty history. Results from superseded month requests are ignored.
+- Nine automated tests pass, including leap years, six-row grids, weekday alignment, year boundaries, and monthly queries that reflect undo.
+- This checkpoint displays history only. Editing past dates and reminder behavior remain separate work.
+
+### Phone checks still needed
+
+1. Scroll below the confirmation button and check today's outline and recorded tick, if confirmed.
+2. Confirm and undo today: the calendar tick and monthly count should update with the main card.
+3. Navigate backward and forward, including December/January, then use Back to this month.
+4. Reload or reopen: history should persist. The initial month is the current month after reopening.
+5. Check that weekdays, dates, and navigation fit on the phone. Future dates should have no recorded ticks.

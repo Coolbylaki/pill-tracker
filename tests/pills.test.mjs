@@ -17,6 +17,9 @@ function adapter(database) {
     async runAsync(sql, ...parameters) {
       return database.prepare(sql).run(...parameters);
     },
+    async getAllAsync(sql, ...parameters) {
+      return database.prepare(sql).all(...parameters);
+    },
     async getFirstAsync(sql, ...parameters) {
       return database.prepare(sql).get(...parameters) ?? null;
     },
@@ -97,6 +100,42 @@ test('a newer database version is rejected without modifying its records', async
     await assert.rejects(initializeDatabase(adapter(database)), /newer app version/);
     assert.equal(database.prepare('PRAGMA user_version').get().user_version, 2);
     assert.equal(database.prepare('SELECT value FROM sentinel').get().value, 'keep');
+  } finally {
+    database.close();
+  }
+});
+
+test('monthly history includes both month boundaries, excludes adjacent months, and reflects undo', async () => {
+  const database = new DatabaseSync(':memory:');
+  try {
+    await initializeDatabase(adapter(database));
+    const repository = createPillRepository(adapter(database));
+    for (const date of [
+      new Date(2026, 10, 1, 8),
+      new Date(2026, 9, 31, 8),
+      new Date(2026, 8, 30, 8),
+      new Date(2026, 9, 1, 8),
+    ]) {
+      await repository.confirm(date);
+    }
+    let records = await repository.getMonthRecords(new Date(2026, 9, 15));
+    assert.deepEqual(
+      records.map((record) => record.routineDate),
+      ['2026-10-01', '2026-10-31'],
+    );
+    await repository.undo(records[0]);
+    records = await repository.getMonthRecords(new Date(2026, 9, 15));
+    assert.deepEqual(
+      records.map((record) => record.routineDate),
+      ['2026-10-31'],
+    );
+    assert.deepEqual(await repository.getMonthRecords(new Date(2026, 7, 1)), []);
+    await repository.confirm(new Date(2026, 11, 31, 8));
+    await repository.confirm(new Date(2027, 0, 1, 8));
+    assert.deepEqual(
+      (await repository.getMonthRecords(new Date(2026, 11, 1))).map((record) => record.routineDate),
+      ['2026-12-31'],
+    );
   } finally {
     database.close();
   }

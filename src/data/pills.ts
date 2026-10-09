@@ -1,9 +1,11 @@
+import { monthRange } from '../utils/calendar.ts';
 import { localDateKey } from '../utils/dates.ts';
 
 interface Database {
   execAsync(sql: string): Promise<void>;
   runAsync(sql: string, ...parameters: string[]): Promise<unknown>;
   getFirstAsync<T>(sql: string, ...parameters: string[]): Promise<T | null>;
+  getAllAsync<T>(sql: string, ...parameters: string[]): Promise<T[]>;
 }
 
 export interface PillRecord {
@@ -36,6 +38,15 @@ export function createPillRepository(database: Database) {
     );
   }
 
+  async function getMonthRecords(month: Date): Promise<PillRecord[]> {
+    const { start, end } = monthRange(month);
+    return database.getAllAsync<PillRecord>(
+      'SELECT routine_date AS routineDate, taken_at AS takenAt FROM pill_records WHERE routine_date >= ? AND routine_date < ? ORDER BY routine_date',
+      start,
+      end,
+    );
+  }
+
   async function confirm(now: Date): Promise<PillRecord> {
     const routineDate = localDateKey(now);
     await database.runAsync(
@@ -56,7 +67,7 @@ export function createPillRepository(database: Database) {
     );
   }
 
-  return { getRecord, confirm, undo };
+  return { getRecord, getMonthRecords, confirm, undo };
 }
 
 export type PillRepository = ReturnType<typeof createPillRepository>;

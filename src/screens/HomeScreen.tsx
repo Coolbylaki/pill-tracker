@@ -10,6 +10,7 @@ import {
   View,
 } from 'react-native';
 
+import { MonthCalendar } from '../components/MonthCalendar';
 import type { PillRecord, PillRepository } from '../data/pills';
 import { formatDay, formatTime, localDateKey } from '../utils/dates';
 
@@ -219,6 +220,8 @@ export function HomeScreen({ repository }: Props) {
           </Pressable>
         )}
       </View>
+
+      <MonthCalendar repository={repository} today={today} />
 
       <View style={styles.footer}>
         <View style={styles.dot} />

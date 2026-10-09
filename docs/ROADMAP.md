@@ -20,6 +20,8 @@ Each milestone ends with a reviewable result, appropriate verification, a descri
 
 - First dark home screen and SQLite daily confirmation/undo are implemented. The user verified the basic recording flow on their phone on 2026-10-09.
 
+- Monthly calendar display and navigation are implemented. Phone verification and deliberate past-date editing remain pending.
+
 ## Later options
 
 Backup/export, optional cloud sync, home-screen widget, configurable reminder offsets, and paid public ad removal. These are proposals, not committed version-1 scope.
