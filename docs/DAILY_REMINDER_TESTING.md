@@ -37,7 +37,7 @@ The user reported all four saved-settings and Undo regression checks passed on 2
 
 ## Accelerated real-schedule check
 
-Reported passed on 2026-10-09: temporary 3-minute/6-minute scheduling, displayed upcoming times, and both notifications while locked with the app swiped away. Exact arrival timestamps were not supplied. Notification review/cancellation and longer lifecycle checks below remain pending.
+Reported passed on 2026-10-09: temporary 3-minute/6-minute scheduling, displayed upcoming times, and both notifications while locked with the app swiped away. Exact arrival timestamps were not supplied. On another phone, tapping a real daily notification opened the correct routine date without confirming pills; **Review this routine** opened the confirmation dialog, and Yes updated Home and the calendar. Confirmation between reminders preventing the critical notification and longer lifecycle checks below remain pending.
 
 For an unconfirmed routine day, temporarily set the pill time to the current hour/minute and the optional delays to **0.05 hours** (3 minutes) and **0.1 hours** (6 minutes). Save promptly and check the dated times on Home. If today is already confirmed, the reminders correctly move to tomorrow; use that day rather than undoing a genuine record solely to trigger notifications. Undo is suitable for an artificial test entry only.
 
@@ -53,6 +53,14 @@ Android can delay closely spaced alarms while idle. Record approximate arrival t
 ## Overnight and reboot
 
 Keep a future schedule pending, then leave the app unopened through the next routine day. Reminders should continue without a daily app launch. Reboot before a future reminder and unlock the phone once; the native boot receiver reconstructs the schedule from SQLite. These outcomes require physical-phone reports and are not established by unit tests or a successful build.
+
+Planned for the night of October 9–10, 2026 (Europe/Belgrade), awaiting actual results:
+
+1. Temporarily save pill time **00:00** with **1-hour / 6-hour defaults**. October 10 must remain unconfirmed for this check. Both October 9 daily slots were already delivered and must not be reset for testing.
+2. Verify Home shows **October 10 at 01:00 and 06:00**.
+3. Reboot, unlock once, and leave the app closed overnight.
+4. Report whether both notifications arrived, their approximate arrival times, and whether the app stayed closed. Record any unexpected behavior.
+5. Restore normal settings afterward. Take pills according to the normal routine; do not delay them or erase real history for a test. If a genuine confirmation cancels a pending slot, report that circumstance so the result can be interpreted correctly.
 
 Normal app closing means swiping it away. Android **Force stop**, uninstalling, and clearing data are different lifecycle cases; pending alarms can be stopped or records deleted. A later normal app launch reconstructs future alarms from saved settings and history.
 

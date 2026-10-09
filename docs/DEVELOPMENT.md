@@ -284,3 +284,13 @@ The reported settings-persistence and Undo checkpoint is complete. These checks 
 The user reported all three accelerated daily-schedule checks passed: temporary 3-minute/6-minute settings, the expected upcoming times, and both notifications with the app swiped away and phone locked. Exact arrival timestamps were not supplied. This verifies accelerated real-schedule delivery on this phone; notification review/cancellation, overnight renewal, and reboot restoration remain pending.
 
 The user requested reverting the two permission status messages to their previous subtle presentation. Both notification access and Alarms & reminders access now use the original muted body-text style in setup and Settings. Status wording, permission navigation, and scheduler behavior are unchanged. This JavaScript-only visual change requires a new standalone APK to appear in the installed Test app; the existing repaired Dev APK supports it through the development server.
+
+### Handover: notification review and next phone checkpoint (2026-10-09)
+
+The user reported a successful real daily-notification review on another phone: tapping the notification opened the correct routine date without recording pills. **Review this routine** opened the confirmation dialog; pressing Yes updated Home and the calendar. This completes the reported notification review/confirmation flow, but does not establish cancellation of a future critical reminder after the first reminder.
+
+Both October 9 daily reminder slots were used during accelerated testing. Delivered slots remain consumed after Undo or settings changes; further daily-delivery checks on that phone need a future unconfirmed routine date. The separate repeatable 30s/90s test panel does not exercise the real daily notification's date-review flow.
+
+The next planned check is the night of October 9–10, Europe/Belgrade: temporarily save pill time 00:00 with the default +1-hour/+6-hour delays, verify Home shows October 10 at 01:00 and 06:00, reboot and unlock once, then leave the app closed overnight. Restore normal settings afterward. The test is planned only; wait for the user's actual arrival results before claiming overnight renewal or reboot delivery passed.
+
+Permission navigation remains a phone-review item. The native code already targets this app's exact-alarm page, but the user previously saw broad Android settings pages. Normal daily use, final branding, removal of Test labeling and the test panel, and a data-preserving personal-release transition remain later checkpoints. The latest standalone APK still contains `fcd3779`; no new standalone build has been made for the subtle permission styling in `7ce244c`.
