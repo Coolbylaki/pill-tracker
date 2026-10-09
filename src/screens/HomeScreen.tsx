@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 
 import { MonthCalendar } from '../components/MonthCalendar';
+import { ReminderTestPanel, showReminderTests } from '../components/ReminderTestPanel';
+import { cancelTestReminders } from '../reminders/testNotifications';
 import type { PillRecord, PillRepository } from '../data/pills';
 import { dateFromKey, formatDay, formatTime, localDateKey } from '../utils/dates';
 
@@ -84,8 +86,17 @@ export function HomeScreen({ repository }: Props) {
     setBusy(true);
     setError(null);
     try {
-      if (action === 'confirm') await repository.confirm(now);
-      else if (record) await repository.undo(record);
+      if (action === 'confirm') {
+        await repository.confirm(now);
+        try {
+          await cancelTestReminders(localDateKey(now));
+        } catch {
+          Alert.alert(
+            'Pills recorded',
+            'Your record is saved, but test reminders could not be canceled. Use Cancel all test notifications in the reminder test panel.',
+          );
+        }
+      } else if (record) await repository.undo(record);
     } catch {
       Alert.alert('Couldn’t save the change', 'Please check your status and try again.');
     } finally {
@@ -288,6 +299,8 @@ export function HomeScreen({ repository }: Props) {
         editingDisabled={loading || busy || !!error}
         onSelectDate={openDateCorrection}
       />
+
+      {showReminderTests && <ReminderTestPanel disabled={loading || busy || !!error} />}
 
       <View style={styles.footer}>
         <View style={styles.dot} />

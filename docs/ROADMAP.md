@@ -22,6 +22,8 @@ Each milestone ends with a reviewable result, appropriate verification, a descri
 
 - Monthly calendar display and navigation are implemented and phone-verified on 2026-10-09. Deliberate date corrections were also phone-verified on 2026-10-09.
 
+- Reminder test panel and Android build profiles are prepared. Cloud APK generation, physical-phone delivery, and indefinite daily scheduling still need verification.
+
 ## Later options
 
 Backup/export, optional cloud sync, home-screen widget, configurable reminder offsets, and paid public ad removal. These are proposals, not committed version-1 scope.

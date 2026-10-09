@@ -4,19 +4,23 @@
   "main": "index.ts",
   "dependencies": {
     "expo": "~57.0.27",
+    "expo-constants": "~57.0.21",
+    "expo-dev-client": "~57.0.19",
+    "expo-notifications": "~57.0.22",
     "expo-sqlite": "~57.0.4",
     "expo-status-bar": "~57.0.1",
+    "expo-system-ui": "~57.0.4",
     "react": "19.2.3",
     "react-native": "0.86.3",
     "react-native-safe-area-context": "~5.7.0"
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
+    "eslint": "^9.39.5",
+    "eslint-config-expo": "~57.0.2",
     "eslint-config-prettier": "10.1.8",
     "prettier": "3.9.9",
-    "typescript": "~6.0.3",
-    "eslint": "^9.39.5",
-    "eslint-config-expo": "~57.0.2"
+    "typescript": "~6.0.3"
   },
   "scripts": {
     "start": "expo start",
@@ -29,7 +33,11 @@
     "lint:fix": "eslint . --fix",
     "check": "npm run lint && npm run typecheck && npm run format:check && npm test",
     "lint": "eslint . --max-warnings=0",
-    "test": "node --experimental-strip-types --test tests/*.test.mjs"
+    "test": "node --experimental-strip-types --test tests/*.test.mjs",
+    "start:dev": "expo start --dev-client",
+    "start:go": "expo start --go",
+    "build:reminder-test": "npx --yes eas-cli@24.12.1 build --platform android --profile reminder-test",
+    "build:dev": "npx --yes eas-cli@24.12.1 build --platform android --profile development"
   },
   "private": true,
   "engines": {

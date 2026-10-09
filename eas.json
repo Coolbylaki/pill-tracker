@@ -1,0 +1,30 @@
+{
+  "cli": {
+    "appVersionSource": "local",
+    "version": "24.12.1"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "APP_VARIANT": "development",
+        "EXPO_PUBLIC_REMINDER_TESTS": "true"
+      }
+    },
+    "reminder-test": {
+      "developmentClient": false,
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "env": {
+        "APP_VARIANT": "reminder-test",
+        "EXPO_PUBLIC_REMINDER_TESTS": "true"
+      }
+    }
+  }
+}

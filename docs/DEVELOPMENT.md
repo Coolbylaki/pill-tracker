@@ -148,3 +148,15 @@ Reminder delivery and development-build verification remain separate checkpoints
 The user reported that all requested checks passed: existing records survived the update, canceling additions/removals left records unchanged, confirmed corrections persisted after reload, future dates did not open an editor, and editing today kept the calendar and main card synchronized.
 
 The date-correction checkpoint is complete. Reminder feasibility and development-build testing are next.
+
+## Reminder feasibility preparation
+
+Prepared on 2026-10-09:
+
+- Expo cloud project linked under coolbylaki. EAS CLI 24.12.1 is pinned in build scripts and eas.json; it is invoked on demand rather than installed as an app dependency.
+- Separate Dev and standalone Test APK profiles, with their own identifiers/databases. Release identifiers and marketplace builds remain unconfigured.
+- Native local notifications, notification channel/permission handling, exact-alarm manifest permission, and explicit config plugins.
+- Debug/test-only panel schedules 30s/90s pairs now or tomorrow, lists pending counts, simulates today's cancellation, and cancels all owned tests. No remote push tokens or messaging services are used.
+- Actual daily confirmation cancels matching test reminders after the pill record is saved; cancellation failure does not misreport the record as unsaved.
+- Sixteen automated tests pass; Expo Doctor passed all 21 checks before final plugin configuration. Android bundle generation passed. The inherited npm audit remains 22 affected dependency entries after removing EAS CLI from app dependencies.
+- Detailed phone checks and architectural limitations are in REMINDER_TESTING.md. Native delivery and production scheduling are not yet verified.
