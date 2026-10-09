@@ -208,3 +208,12 @@ Install the updated Test APK over the existing Test app to preserve its history.
 Daily reminders are not scheduled by this checkpoint. The existing short reminder test remains available; do not treat its independent delivery controls as the production schedule.
 
 Validation: ESLint, strict TypeScript, Prettier, all 21 automated tests, all 21 Expo Doctor checks, and the Android bundle export passed. Physical-phone setup verification remains pending.
+
+### Setup APK results (2026-10-09)
+
+Both updated Android APKs completed successfully from commit `3d52c015db120603512b9ed4124c886dd221ef8c`. GitHub Actions also passed for that commit.
+
+- [Install updated Pill Tracker Test](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/c7b6fee6-1985-4c3c-8b6c-41b930050d75): standalone setup/Settings phone checks, no development server needed.
+- [Install updated Pill Tracker Dev](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/2abefe88-57ef-4aa3-99e1-a55491510ee0): native time-picker support for live development.
+
+Install over the matching existing app to preserve its database. Existing users see setup once because the older app had no preferences row. Physical-phone setup and Settings results remain pending; the checklist above is the next review step. Production reminders remain inactive.

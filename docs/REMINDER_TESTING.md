@@ -10,7 +10,16 @@ This checkpoint tests Android's local notification delivery. It does not enable 
 - The development identifiers are `com.coolbylaki.pilltracker.dev` and `com.coolbylaki.pilltracker.test`. Public/personal release identifiers will be decided later.
 - Expo project: https://expo.dev/accounts/coolbylaki/projects/pill-tracker
 
-## Completed test builds
+## Latest builds with setup and Settings
+
+Built on 2026-10-09 from commit `3d52c01`:
+
+- [Install updated Pill Tracker Test](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/c7b6fee6-1985-4c3c-8b6c-41b930050d75).
+- [Install updated Pill Tracker Dev](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/2abefe88-57ef-4aa3-99e1-a55491510ee0).
+
+Install over the matching existing app to retain its history. Finish the new setup flow to reach the home screen and Reminder test panel. The setup/Settings phone checklist is in DEVELOPMENT.md. Daily reminders remain inactive; the short test panel still schedules only explicit test notifications.
+
+## Original reminder-test builds
 
 Built on 2026-10-09 from commit `63aad66`:
 
