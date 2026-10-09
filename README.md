@@ -4,7 +4,7 @@ An offline Android app for one daily pill-taking confirmation, a calendar of pas
 
 ## Project status
 
-Milestone 1: specification and repository preparation. No app code has been generated yet.
+Milestone 1 is complete: specification, development workflow, local Git, and a private GitHub repository are prepared. No app code has been generated yet.
 
 ## Agreed direction
 
@@ -13,7 +13,7 @@ Milestone 1: specification and repository preparation. No app code has been gene
 - Android physical-device development build for reminder verification.
 - Dark mode by default, with light and device-theme settings.
 - One codebase with an ad-free personal build and a future free public build with ads.
-- Private GitHub repository.
+- Private GitHub repository: https://github.com/Coolbylaki/pill-tracker.
 
 ## Documents
 

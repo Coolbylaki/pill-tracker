@@ -5,7 +5,7 @@
 - Windows; project directory: C:\Projects\Pill Tracker.
 - Git 2.54.0 is installed and has an existing author identity.
 - Node.js 26.1.0 and npm 11.13.0 are installed.
-- GitHub CLI 2.102.0 is now installed. Browser authentication has been started; private repository creation and the first push are pending user sign-in.
+- GitHub CLI 2.102.0 is installed and authenticated. Private repository: https://github.com/Coolbylaki/pill-tracker. The main branch tracks origin/main; preparation commits have been pushed.
 - Android Studio is not installed, according to the user.
 - User has a current Android phone and a GitHub account.
 
