@@ -60,3 +60,26 @@ Check current requirements at the implementation and release milestones.
 ## Known dependency follow-up
 
 The initial official scaffold's npm audit reported 22 affected dependency entries (15 high, 7 moderate), propagated through Expo and React Native tooling. The underlying findings include braces, node-forge, and uuid. The suggested force fix downgrades the app to older incompatible Expo/React Native versions, so it was not applied. Track compatible upstream patches and reassess before any distributed release; do not treat the current audit as clean. The initial scaffold passed TypeScript, Expo dependency compatibility, and Android bundle export checks.
+
+## First home screen and daily recording
+
+Implemented on 2026-10-09:
+
+- Dark home screen, safe areas, scroll support, current local date, confirmation dialog, saved timestamp, and undo with confirmation.
+- SQLite schema version 1 stores one record per local day. Repeated confirmations preserve the first timestamp. Undo checks both date and timestamp.
+- Refresh status after foregrounding and when the local day changes. A dialog spanning midnight cannot silently confirm the wrong date.
+- Database failures offer retry and do not display a successful confirmation unless the stored record is read back.
+- Tests execute the application's repository against real SQLite using Node's built-in SQLite driver. They verify reopening, duplicate prevention, undo isolation, local date boundaries, different time zones, and rejecting future schema versions.
+- TypeScript allows explicit .ts imports so the repository can run in Node's test runner as well as Metro.
+- Physical-phone checks of this new screen are pending. Native Expo SQLite bridge behavior and the actual layout still require device verification.
+
+### Phone verification for this checkpoint
+
+1. Reload Expo Go if Fast Refresh has not shown the new screen. Check that the dark home screen fits below the status bar and above the navigation area.
+2. Tap the main button, then cancel: the day remains unrecorded.
+3. Confirm after taking pills, or use the undo flow immediately after a test confirmation: the screen shows the recorded time and disables duplicate confirmation.
+4. Reload and reopen the app: the confirmed state should remain.
+5. Cancel the undo dialog: the confirmed state remains. Confirm undo: the button becomes available again.
+6. Check scrolling and text when using a larger phone font size.
+
+Calendar, notification scheduling/cancellation, theme settings, and backups are separate checkpoints. These tests do not verify reminder delivery.

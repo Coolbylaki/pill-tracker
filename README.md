@@ -4,7 +4,7 @@ An offline Android app for one daily pill-taking confirmation, a calendar of pas
 
 ## Project status
 
-Preparation and the minimal Expo SDK 57 / TypeScript scaffold are complete. Code checks pass locally and on GitHub. On 2026-10-09, the user confirmed that the starter screen runs on their Android phone through Expo Go. Pill tracking features and development-build reminder verification remain pending.
+Preparation and the minimal Expo SDK 57 / TypeScript scaffold are complete. Code checks pass locally and on GitHub. On 2026-10-09, the user confirmed that the starter screen runs on their Android phone through Expo Go. The first dark home screen and local daily confirmation flow are implemented. Verification of this new flow on the phone, the calendar, and development-build reminders remain pending.
 
 ## Agreed direction
 
@@ -45,6 +45,6 @@ npm run format
 npm run lint:fix
 ```
 
-`check` runs ESLint, TypeScript, and Prettier's formatting check. Formatting is handled by Prettier; ESLint handles code correctness using Expo's configuration. `eslint-config-prettier` disables conflicting style rules. GitHub Actions runs the same checks with `npm ci` on Node.js 24.
+`check` runs ESLint, TypeScript, Prettier's formatting check, and database/date tests. Formatting is handled by Prettier; ESLint handles code correctness using Expo's configuration. `eslint-config-prettier` disables conflicting style rules. GitHub Actions runs the same checks with `npm ci` on Node.js 24.
 
-The scaffold still displays the official template's welcome screen. No pill records, reminders, or ads are implemented yet.
+The home screen shows today's date, a confirmation button, a saved time, and a deliberate undo action. Confirmations are stored in SQLite with one record per local calendar day. The calendar, reminders, light theme, and ads are not implemented yet.
