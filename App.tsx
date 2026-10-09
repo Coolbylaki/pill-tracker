@@ -25,6 +25,8 @@ import { defaultPreferences, type Preferences, type ThemeMode } from './src/data
 import { HomeScreen } from './src/screens/HomeScreen';
 import { PreferencesScreen } from './src/screens/PreferencesScreen';
 import { paletteFor, ThemeContext } from './src/theme';
+import { isPersonalBuild } from './src/build';
+import { cancelTestReminders } from './src/reminders/testNotifications';
 
 export default function App() {
   const [storage, setStorage] = useState<AppStorage | null>(null);
@@ -61,6 +63,25 @@ export default function App() {
       throw new Error('Daily reminders could not be updated. Please try again.');
     }
   }, []);
+
+  useEffect(() => {
+    if (!storage || !isPersonalBuild) return;
+    async function clearOldTests() {
+      try {
+        await cancelTestReminders();
+      } catch {
+        Alert.alert(
+          'Couldn’t clear old test notifications',
+          'Your records and daily reminders are unchanged. Try again to remove leftover delivery tests from the previous app.',
+          [
+            { text: 'Later', style: 'cancel' },
+            { text: 'Try again', onPress: () => void clearOldTests() },
+          ],
+        );
+      }
+    }
+    void clearOldTests();
+  }, [storage]);
 
   useEffect(() => {
     const handleUrl = (url: string | null) => {

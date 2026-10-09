@@ -16,6 +16,18 @@
         "EXPO_PUBLIC_REMINDER_TESTS": "true"
       }
     },
+    "personal": {
+      "developmentClient": false,
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk",
+        "gradleCommand": ":pill-reminders:testReleaseUnitTest :app:assembleRelease"
+      },
+      "env": {
+        "APP_VARIANT": "personal",
+        "EXPO_PUBLIC_REMINDER_TESTS": "false"
+      }
+    },
     "reminder-test": {
       "developmentClient": false,
       "distribution": "internal",

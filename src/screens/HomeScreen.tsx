@@ -16,7 +16,8 @@ import {
 } from 'react-native';
 
 import { MonthCalendar } from '../components/MonthCalendar';
-import { ReminderTestPanel, showReminderTests } from '../components/ReminderTestPanel';
+import { ReminderTestPanel } from '../components/ReminderTestPanel';
+import { showReminderTests } from '../build';
 import { cancelTestReminders } from '../reminders/testNotifications';
 import type { PillRecord, PillRepository } from '../data/pills';
 import { dateFromKey, formatDay, formatTime, localDateKey } from '../utils/dates';
@@ -110,7 +111,7 @@ export function HomeScreen({
       if (action === 'confirm') {
         await repository.confirm(now);
         try {
-          await cancelTestReminders(localDateKey(now));
+          if (showReminderTests) await cancelTestReminders(localDateKey(now));
         } catch {
           Alert.alert(
             'Pills recorded',

@@ -1,5 +1,4 @@
 import { useTheme, type Palette } from '../theme';
-import Constants from 'expo-constants';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -10,8 +9,6 @@ import {
   scheduleTestPair,
 } from '../reminders/testNotifications';
 import { localDateKey } from '../utils/dates';
-
-export const showReminderTests = __DEV__ || Constants.expoConfig?.extra?.reminderTests === true;
 
 export function ReminderTestPanel({ disabled }: { disabled: boolean }) {
   const colors = useTheme();

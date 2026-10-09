@@ -38,7 +38,8 @@
     "start:dev": "expo start --dev-client",
     "start:go": "expo start --go",
     "build:reminder-test": "npx --yes eas-cli@24.12.1 build --platform android --profile reminder-test",
-    "build:dev": "npx --yes eas-cli@24.12.1 build --platform android --profile development"
+    "build:dev": "npx --yes eas-cli@24.12.1 build --platform android --profile development",
+    "build:personal": "npx --yes eas-cli@24.12.1 build --platform android --profile personal"
   },
   "private": true,
   "engines": {
