@@ -2,6 +2,13 @@
 
 This checkpoint connects saved preferences to the native Android scheduler. These checks use the daily schedule, not the independent 30s/90s delivery-test panel.
 
+## Completed daily-reminder builds
+
+Built on 2026-10-09; all 7 native planner tests passed in both builds. Test includes commit `7303531`; Dev includes the native scheduler from `55248a4` and loads current JavaScript from the development server:
+
+- [Install Pill Tracker Test](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/ab59f63e-6666-4604-b27e-de1074938b7f).
+- [Install Pill Tracker Dev](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/617d9e04-5737-4aaf-9518-aad99f12384e).
+
 ## Before testing
 
 Install the updated Pill Tracker Test APK over the existing app to retain its history and preferences. Open it once after installation. The Expo server is unnecessary.

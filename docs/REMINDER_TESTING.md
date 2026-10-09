@@ -1,6 +1,6 @@
 # Reminder feasibility testing
 
-This checkpoint tests Android's local notification delivery. It does not enable the production one-hour/six-hour routine.
+This guide covers the independent notification test panel. The latest APK also enables the real daily schedule; use [Daily reminder phone checks](DAILY_REMINDER_TESTING.md) for its current build links and checklist. The explicit test panel remains independent of the daily reminder toggle.
 
 ## Apps and records
 
@@ -10,7 +10,7 @@ This checkpoint tests Android's local notification delivery. It does not enable 
 - The development identifiers are `com.coolbylaki.pilltracker.dev` and `com.coolbylaki.pilltracker.test`. Public/personal release identifiers will be decided later.
 - Expo project: https://expo.dev/accounts/coolbylaki/projects/pill-tracker
 
-## Latest builds with setup and Settings
+## Earlier setup and Settings builds
 
 Built on 2026-10-09 from commit `3d52c01`:
 

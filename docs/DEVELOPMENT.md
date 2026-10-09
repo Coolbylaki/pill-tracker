@@ -236,3 +236,13 @@ The 30s/90s delivery-test controls intentionally ignore the reminders toggle; th
 - Detailed accelerated, overnight, and reboot phone checks and operational limits are documented in DAILY_REMINDER_TESTING.md. Real-schedule physical-phone results remain pending.
 
 Foreground display refinement: the app reads native schedule status every 15 seconds while active, without rescheduling alarms. This keeps next-reminder dates current after delivery while the screen stays open. Responses superseded by a new reconciliation request are ignored.
+
+### Daily-reminder APK results (2026-10-09)
+
+The standalone Android update completed from commit `7303531`, including the foreground status refresh. The development APK completed from `55248a4` with the same native scheduler; it loads current JavaScript through the development server.
+
+- [Install updated Pill Tracker Test](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/ab59f63e-6666-4604-b27e-de1074938b7f): standalone app with the real daily schedule.
+- [Install updated Pill Tracker Dev](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/617d9e04-5737-4aaf-9518-aad99f12384e): live development with the native scheduler included.
+- All 7 Kotlin planner tests passed in both release and debug builds (0 failures). All 22 JavaScript tests, lint, TypeScript, formatting, Expo Doctor, Android bundle export, and GitHub Actions passed for this checkpoint.
+
+Install over the matching existing app to preserve history and settings. Open once to reconcile alarms. Real daily-reminder delivery, overnight renewal, reboot restoration, and notification review still require the phone checks in DAILY_REMINDER_TESTING.md; they are not claimed as physically verified by these builds.
