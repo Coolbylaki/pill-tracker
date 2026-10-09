@@ -264,7 +264,9 @@ export function PreferencesScreen({
       )}
       {(!onboarding || step >= 1) && (
         <View style={styles.card}>
-          <Text style={styles.heading}>Your reminder plan</Text>
+          <Text style={styles.heading}>
+            {onboarding ? 'Your reminder plan' : 'Preview after saving'}
+          </Text>
           <Text style={styles.copy}>
             {!draft.remindersEnabled
               ? 'Reminders are switched off.'
@@ -283,11 +285,22 @@ export function PreferencesScreen({
       {(!onboarding || step === 2) && (
         <View style={styles.card}>
           <Text style={styles.heading}>Permissions</Text>
-          <Text accessibilityLiveRegion="polite" style={styles.copy}>
+          <Text
+            accessibilityLiveRegion="polite"
+            style={[
+              styles.permissionStatus,
+              permission === 'Notifications allowed' && styles.permissionAllowed,
+            ]}
+          >
             {permission}
           </Text>
           {reminderStatus?.supported && (
-            <Text style={styles.copy}>
+            <Text
+              style={[
+                styles.permissionStatus,
+                reminderStatus.exactAllowed && styles.permissionAllowed,
+              ]}
+            >
               {reminderStatus.exactAllowed
                 ? 'Alarms & reminders allowed'
                 : 'Alarms & reminders access is off'}
@@ -343,6 +356,7 @@ export function PreferencesScreen({
       {!onboarding && (
         <DailyReminderInfo
           status={reminderStatus}
+          title="Saved daily schedule"
           onRetry={() => {
             void onRefreshReminders().catch(() => undefined);
           }}
@@ -404,6 +418,22 @@ const makeStyles = (colors: Palette) =>
     },
     heading: { color: colors.text, fontSize: 18, fontWeight: '600' },
     copy: { color: colors.muted, fontSize: 14, lineHeight: 22 },
+    permissionStatus: {
+      color: colors.text,
+      backgroundColor: colors.soft,
+      borderColor: colors.border,
+      borderWidth: 1,
+      borderRadius: 12,
+      padding: 12,
+      fontSize: 14,
+      fontWeight: '600',
+      lineHeight: 22,
+    },
+    permissionAllowed: {
+      color: colors.accent,
+      borderColor: colors.accent,
+      backgroundColor: colors.taken,
+    },
     notice: { color: colors.accent, fontSize: 13, lineHeight: 21 },
     row: { flexDirection: 'row', gap: 12, alignItems: 'center' },
     grow: { flex: 1 },

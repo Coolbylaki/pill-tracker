@@ -246,3 +246,15 @@ The standalone Android update completed from commit `7303531`, including the for
 - All 7 Kotlin planner tests passed in both release and debug builds (0 failures). All 22 JavaScript tests, lint, TypeScript, formatting, Expo Doctor, Android bundle export, and GitHub Actions passed for this checkpoint.
 
 Install over the matching existing app to preserve history and settings. Open once to reconcile alarms. Real daily-reminder delivery, overnight renewal, reboot restoration, and notification review still require the phone checks in DAILY_REMINDER_TESTING.md; they are not claimed as physically verified by these builds.
+
+## Reported daily-schedule issues and shared storage repair (2026-10-09)
+
+The user reported preserved history and allowed permissions, but saved theme, delay overrides, and the reminders toggle reverted after reopening. The home schedule did not reflect the edited toggle/delay; Undo kept tomorrow's date. They confirmed pressing Save and returning to Home automatically. The Undo test's phone time remains unknown, so an expired reminder cannot yet be distinguished from the storage fault.
+
+Investigation found that Expo's bundled SQLite engine and Android's framework SQLite engine were opening the same WAL database in one process, with the scheduler not requesting WAL. This was an integration defect and a plausible cause of the stale persistence; the exact failure on the physical phone has not been reproduced locally.
+
+The installed Android app now routes repository queries/writes and reminder reads through one framework SQLite engine, with WAL explicitly enabled. It reuses the existing file, tables, and schema versions; no history/settings reset is performed. Expo Go keeps its separate Expo SQLite fallback. Older development APKs must be updated because the new storage bridge is required.
+
+Save verifies all preferences with a fresh read before returning to Home. Settings labels distinguish the edit preview from the saved daily schedule. Permission statuses use prominent bordered backgrounds and stronger text. General permission-navigation improvements remain a later checkpoint.
+
+New checks cover an existing settings row changed to light mode, reminders disabled, and a five-hour critical delay across reopening; failed read-back detection; bridge batch/binding behavior; native schedule reconciliation after settings updates and Undo; WAL preservation and failed-migration rollback. JavaScript checks passed (26 tests). Three Android database/scheduler integration tests run with Robolectric's native SQLite mode alongside the seven planner tests; cloud/native and physical-phone verification are pending until recorded below.

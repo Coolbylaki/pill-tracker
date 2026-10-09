@@ -15,6 +15,16 @@ Install the updated Pill Tracker Test APK over the existing app to retain its hi
 
 In Settings, allow notifications and **Alarms & reminders**. The app now reports both permission states. On return from Android settings, the schedule updates automatically. Without exact-alarm access, Android uses less precise scheduling; delivery can be delayed.
 
+## Saved-settings regression checks
+
+After installing the shared-storage repair, repeat these before delivery testing:
+
+1. Choose Light and Save. Home changes immediately. Reopen Settings and restart the app: Light stays selected.
+2. Set critical delay to 5 hours and Save. The saved schedule changes to pill time +5 hours. Reopen Settings and restart: the value remains 5.
+3. Switch reminders off and Save. Home and the saved schedule show switched off. Restart: the switch remains off. Turn on and Save to restore the schedule.
+4. Undo only an artificial record, with a future unsent reminder today. The schedule should include that future slot immediately. At 08:00 pill time, before 09:00 both defaults can return; between 09:00 and 14:00 only today's critical can return; after 14:00 both are tomorrow. Already delivered slots do not repeat. Record the phone time and pill time with the result.
+5. Confirm real history remains intact. Restore the usual theme, delays, and reminder toggle after checking.
+
 ## Schedule and toggle
 
 1. Check that theme, pill time, and history survived the update.

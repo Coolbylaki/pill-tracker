@@ -69,9 +69,17 @@ export function createPreferencesRepository(database: Database) {
     async save(value: Preferences): Promise<void> {
       validatePreferences(value);
       await database.runAsync(
-        'INSERT INTO app_preferences (id, version, value) VALUES (1, 1, ?) ON CONFLICT(id) DO UPDATE SET version = 1, value = excluded.value',
+        'INSERT OR REPLACE INTO app_preferences (id, version, value) VALUES (1, 1, ?)',
         JSON.stringify(value),
       );
+      const saved = await this.load();
+      if (
+        !saved ||
+        (Object.keys(defaultPreferences) as (keyof Preferences)[]).some(
+          (key) => saved[key] !== value[key],
+        )
+      )
+        throw new Error('Your settings could not be verified. Please try saving again.');
     },
   };
 }

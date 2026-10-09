@@ -140,3 +140,42 @@ test('evening reminders retain the originating routine date across midnight', ()
     ],
   );
 });
+
+test('updating existing settings persists light theme, disabled reminders, and five-hour critical delay', async () => {
+  const directory = mkdtempSync(join(tmpdir(), 'pill-settings-update-'));
+  const path = join(directory, 'settings.db');
+  let db = new DatabaseSync(path);
+  try {
+    await initializeDatabase(adapter(db));
+    await initializePreferences(adapter(db));
+    const repository = createPreferencesRepository(adapter(db));
+    await repository.save(defaultPreferences);
+    const updated = {
+      ...defaultPreferences,
+      theme: 'light',
+      remindersEnabled: false,
+      criticalDelayMinutes: 300,
+    };
+    await repository.save(updated);
+    assert.deepEqual(await repository.load(), updated);
+    db.close();
+    db = new DatabaseSync(path);
+    assert.deepEqual(await createPreferencesRepository(adapter(db)).load(), updated);
+  } finally {
+    db.close();
+    rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test('settings save rejects a write that resolves without storing the requested values', async () => {
+  const repository = createPreferencesRepository({
+    async runAsync() {},
+    async getFirstAsync() {
+      return { version: 1, value: JSON.stringify(defaultPreferences) };
+    },
+  });
+  await assert.rejects(
+    repository.save({ ...defaultPreferences, theme: 'light' }),
+    /could not be verified/,
+  );
+});

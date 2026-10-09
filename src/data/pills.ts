@@ -70,7 +70,7 @@ export function createPillRepository(database: Database) {
     recordedAt: string,
   ): Promise<PillRecord> {
     await database.runAsync(
-      'INSERT INTO pill_records (routine_date, taken_at, recorded_at) VALUES (?, ?, ?) ON CONFLICT(routine_date) DO NOTHING',
+      'INSERT OR IGNORE INTO pill_records (routine_date, taken_at, recorded_at) VALUES (?, ?, ?)',
       routineDate,
       takenAt,
       recordedAt,

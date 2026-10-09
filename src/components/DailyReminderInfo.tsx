@@ -6,14 +6,16 @@ import { dateFromKey, localDateKey } from '../utils/dates';
 export function DailyReminderInfo({
   status,
   onRetry,
+  title = 'Daily reminders',
 }: {
   status: DailyReminderStatus | null;
+  title?: string;
   onRetry?: () => void;
 }) {
   const styles = makeStyles(useTheme());
   return (
     <View style={styles.card}>
-      <Text style={styles.heading}>Daily reminders</Text>
+      <Text style={styles.heading}>{title}</Text>
       {!status ? (
         <Text style={styles.copy}>Checking your schedule…</Text>
       ) : status.error ? (

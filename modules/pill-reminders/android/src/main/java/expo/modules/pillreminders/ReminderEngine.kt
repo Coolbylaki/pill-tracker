@@ -12,7 +12,7 @@ import android.net.Uri
 import android.os.Build
 import org.json.JSONArray
 import org.json.JSONObject
-import java.io.File
+
 import java.time.Instant
 import java.time.LocalDate
 import java.time.ZoneId
@@ -47,9 +47,7 @@ object ReminderEngine {
   private fun exactAllowed(context: Context) = Build.VERSION.SDK_INT < 31 || alarms(context).canScheduleExactAlarms()
 
   private fun openDatabase(context: Context): SQLiteDatabase? {
-    val file = File(context.filesDir, "SQLite/pill-tracker.db")
-    if (!file.exists()) return null
-    val database = SQLiteDatabase.openDatabase(file.path, null, SQLiteDatabase.OPEN_READWRITE or SQLiteDatabase.NO_LOCALIZED_COLLATORS)
+    val database = PillDatabase.open(context) ?: return null
     try {
       database.rawQuery("PRAGMA user_version", null).use { require(it.moveToFirst() && it.getInt(0) == 2) { "Unknown pill database version" } }
       database.execSQL("CREATE TABLE IF NOT EXISTS reminder_deliveries (routine_date TEXT NOT NULL, sequence INTEGER NOT NULL CHECK (sequence IN (1, 2)), delivered_at TEXT NOT NULL, PRIMARY KEY (routine_date, sequence))")

@@ -9,6 +9,15 @@ import expo.modules.kotlin.modules.ModuleDefinition
 class PillRemindersModule : Module() {
   override fun definition() = ModuleDefinition {
     Name("PillReminders")
+    AsyncFunction("executeStorage") { statements: List<String> ->
+      PillDatabase.execute(requireNotNull(appContext.reactContext), statements)
+    }
+    AsyncFunction("runStorage") { sql: String, parameters: List<String?> ->
+      PillDatabase.run(requireNotNull(appContext.reactContext), sql, parameters)
+    }
+    AsyncFunction("queryStorage") { sql: String, parameters: List<String> ->
+      PillDatabase.query(requireNotNull(appContext.reactContext), sql, parameters)
+    }
     AsyncFunction("reconcile") {
       val context = requireNotNull(appContext.reactContext)
       ReminderEngine.reconcile(context)
