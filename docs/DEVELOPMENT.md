@@ -300,3 +300,9 @@ Permission navigation remains a phone-review item. The native code already targe
 The user reported that both the overnight and reboot checks passed, following the October 9–10 test plan recorded above. Overnight delivery and reboot restoration are now marked passed based on this physical-phone report. Exact arrival timestamps were not supplied; the planned 01:00 and 06:00 times are not recorded as measured arrival times.
 
 Confirmation after the first reminder preventing the critical notification and permission navigation remain pending. Continue with normal daily use and restore usual settings after temporary testing; do not delay taking pills, erase real history, or reset delivered reminder slots to create another test.
+
+### Reported confirmation-between-reminders result (2026-10-10)
+
+The user clarified that they had already checked cancellation through the real daily notification: the first reminder arrived, they opened its notification and recorded taking the pill through that flow, and the critical reminder did not arrive. Confirmation after the first reminder preventing the critical notification is now marked passed based on this physical-phone report. The date of the test and exact reminder/confirmation timestamps were not supplied; October 10 is the report date.
+
+Permission navigation remains the outstanding focused phone review. The normal daily-use trial, final branding, removal of Test labeling and the test panel, and a data-preserving personal-release transition remain ahead.
