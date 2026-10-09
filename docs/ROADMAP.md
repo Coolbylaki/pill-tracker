@@ -14,4 +14,10 @@ Each milestone ends with a reviewable result, appropriate verification, a descri
 
 ## Completed checkpoints
 
+- Preparation and private GitHub setup are complete.
+- Minimal Expo/TypeScript scaffold, ESLint, Prettier, and GitHub checks are complete.
+- Starter screen verified by the user on their Android phone through Expo Go on 2026-10-09. Development-build and reminder verification remain pending.
+
+## Later options
+
 Backup/export, optional cloud sync, home-screen widget, configurable reminder offsets, and paid public ad removal. These are proposals, not committed version-1 scope.
