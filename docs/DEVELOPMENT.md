@@ -258,3 +258,12 @@ The installed Android app now routes repository queries/writes and reminder read
 Save verifies all preferences with a fresh read before returning to Home. Settings labels distinguish the edit preview from the saved daily schedule. Permission statuses use prominent bordered backgrounds and stronger text. General permission-navigation improvements remain a later checkpoint.
 
 New checks cover an existing settings row changed to light mode, reminders disabled, and a five-hour critical delay across reopening; failed read-back detection; bridge batch/binding behavior; native schedule reconciliation after settings updates and Undo; WAL preservation and failed-migration rollback. JavaScript checks passed (26 tests). Three Android database/scheduler integration tests run with Robolectric's native SQLite mode alongside the seven planner tests; cloud/native and physical-phone verification are pending until recorded below.
+
+### Shared-storage repair APK results (2026-10-09)
+
+Both APKs built successfully from `fcd3779`, with all 10 required Android tests passing (7 planner tests plus 3 native SQLite/scheduler integration tests, 0 failures). All 26 JavaScript tests, lint, TypeScript, formatting, and GitHub Actions passed. An initial standalone attempt failed before compilation due to Expo's temporary credential-service network error; its retry succeeded.
+
+- [Install repaired Pill Tracker Test](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/37a221a3-b7cf-4dfb-85d1-171c605ae795): standalone, no server required.
+- [Install repaired Pill Tracker Dev](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/d4234c7f-43ff-408e-8dbb-fabdfdaf1178): required native storage bridge for live development.
+
+Install over the matching existing app and open once; keep its data. The reported physical-phone persistence and Undo cases still require the saved-settings regression checklist. Automated tests do not establish that the physical-phone report is resolved, or prove overnight/reboot delivery.

@@ -28,3 +28,5 @@ Each milestone ends with a reviewable result, appropriate verification, a descri
 ## Later options
 
 Backup/export, optional cloud sync, home-screen widget, and paid public ad removal. These are proposals, not committed version-1 scope.
+
+Shared-storage repair: theme, delay, and reminders-toggle persistence failures were reported. The installed Android app now shares one SQLite engine with the scheduler. Both updated builds passed 10 native tests and 26 JavaScript tests; physical-phone regression checks remain pending.

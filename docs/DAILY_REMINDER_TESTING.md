@@ -2,12 +2,14 @@
 
 This checkpoint connects saved preferences to the native Android scheduler. These checks use the daily schedule, not the independent 30s/90s delivery-test panel.
 
-## Completed daily-reminder builds
+## Latest builds with shared-storage repair
 
-Built on 2026-10-09; all 7 native planner tests passed in both builds. Test includes commit `7303531`; Dev includes the native scheduler from `55248a4` and loads current JavaScript from the development server:
+Built from `fcd3779` on 2026-10-09. All 10 Android tests passed in both builds, including native SQLite/scheduler integration regressions:
 
-- [Install Pill Tracker Test](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/ab59f63e-6666-4604-b27e-de1074938b7f).
-- [Install Pill Tracker Dev](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/617d9e04-5737-4aaf-9518-aad99f12384e).
+- [Install Pill Tracker Test](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/37a221a3-b7cf-4dfb-85d1-171c605ae795).
+- [Install Pill Tracker Dev](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/d4234c7f-43ff-408e-8dbb-fabdfdaf1178).
+
+These supersede the initial daily-scheduler builds. Dev must be updated before loading current JavaScript because storage now uses new native bridge methods.
 
 ## Before testing
 
