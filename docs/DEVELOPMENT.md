@@ -306,3 +306,9 @@ Confirmation after the first reminder preventing the critical notification and p
 The user clarified that they had already checked cancellation through the real daily notification: the first reminder arrived, they opened its notification and recorded taking the pill through that flow, and the critical reminder did not arrive. Confirmation after the first reminder preventing the critical notification is now marked passed based on this physical-phone report. The date of the test and exact reminder/confirmation timestamps were not supplied; October 10 is the report date.
 
 Permission navigation remains the outstanding focused phone review. The normal daily-use trial, final branding, removal of Test labeling and the test panel, and a data-preserving personal-release transition remain ahead.
+
+### Reported exact-alarm permission navigation result (2026-10-10)
+
+The user confirmed that the Alarms & reminders option opens this app's alarm toggle directly, and that they had already checked it on the phone. This resolves the pending exact-alarm navigation review based on the physical-phone report. This report concerns the alarm settings destination; it does not add a separate notification-permission navigation result.
+
+The focused reminder checks tracked at handover are now reported passed: accelerated daily delivery, notification date review and confirmation, cancellation after the first reminder, overnight delivery, reboot restoration, and direct exact-alarm settings navigation. Normal daily use remains the next checkpoint, followed by final branding, removal of Test labeling and the test panel, and a data-preserving transition to the ad-free personal release.

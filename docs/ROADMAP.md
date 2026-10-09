@@ -36,3 +36,5 @@ Latest phone results (2026-10-09): accelerated daily reminders both arrived whil
 Latest phone results (2026-10-10): the user reported both overnight delivery and reboot restoration passed. This completes the planned October 9–10 phone checkpoint; exact arrival timestamps were not supplied. Confirmation between the first and critical reminders preventing the critical notification, permission navigation, and the normal daily-use trial remain pending.
 
 Follow-up report (2026-10-10): the user had also checked confirmation between reminders. After the first daily reminder, they opened its notification and recorded taking the pill; the critical reminder did not arrive. This phone cancellation check is passed. Permission navigation and the normal daily-use trial remain pending before personal-release preparation.
+
+Exact-alarm navigation report (2026-10-10): the user confirmed the Alarms & reminders option opens this app's alarm toggle directly. The pending alarm-permission navigation check is passed. The focused reminder checks tracked at handover are now reported passed; normal daily use is next, before branding and a data-preserving personal-release transition.

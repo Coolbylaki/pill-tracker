@@ -54,7 +54,7 @@ Android can delay closely spaced alarms while idle. Record approximate arrival t
 
 Keep a future schedule pending, then leave the app unopened through the next routine day. Reminders should continue without a daily app launch. Reboot before a future reminder and unlock the phone once; the native boot receiver reconstructs the schedule from SQLite. These outcomes require physical-phone reports and are not established by unit tests or a successful build.
 
-The user reported on October 10, 2026 (Europe/Belgrade) that both the overnight and reboot checks passed. Exact arrival timestamps were not supplied. Confirmation between reminders preventing the critical notification also passed the reported phone check. Permission navigation remains pending; a longer normal daily-use trial is still ahead.
+The user reported on October 10, 2026 (Europe/Belgrade) that both the overnight and reboot checks passed. Exact arrival timestamps were not supplied. Confirmation between reminders preventing the critical notification also passed the reported phone check. The user also confirmed that the Alarms & reminders button opens this app's alarm toggle directly. That navigation check passed; a longer normal daily-use trial is still ahead.
 
 The October 9–10 test plan is retained below for reference. Its scheduled times were 01:00 and 06:00; these are planned times, not measured arrival timestamps.
 
