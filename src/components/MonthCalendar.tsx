@@ -8,6 +8,9 @@ import { localDateKey } from '../utils/dates';
 interface Props {
   repository: PillRepository;
   today: Date;
+  revision: number;
+  editingDisabled: boolean;
+  onSelectDate: (dateKey: string, record: PillRecord | null) => void;
 }
 
 interface MonthResult {
@@ -18,12 +21,18 @@ interface MonthResult {
 
 const weekdays = Array.from({ length: 7 }, (_, index) => new Date(2024, 0, 1 + index, 12));
 
-export function MonthCalendar({ repository, today }: Props) {
+export function MonthCalendar({
+  repository,
+  today,
+  revision,
+  editingDisabled,
+  onSelectDate,
+}: Props) {
   const [selectedMonth, setSelectedMonth] = useState<Date | null>(null);
   const month = useMemo(() => selectedMonth ?? monthStart(today), [selectedMonth, today]);
   const [attempt, setAttempt] = useState(0);
   const [result, setResult] = useState<MonthResult | null>(null);
-  const key = `${localDateKey(month)}:${today.getTime()}:${attempt}`;
+  const key = `${localDateKey(month)}:${today.getTime()}:${attempt}:${revision}`;
   const currentResult = result?.key === key ? result : null;
   const todayKey = localDateKey(today);
   const isCurrentMonth = localDateKey(month) === localDateKey(monthStart(today));
@@ -126,11 +135,24 @@ export function MonthCalendar({ repository, today }: Props) {
                 const isToday = day.dateKey === todayKey;
                 const label = `${day.date.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })}${isToday ? ', today' : ''}, ${future ? 'future date' : taken ? 'pills recorded' : 'not recorded'}`;
                 return (
-                  <View
+                  <Pressable
                     key={day.dateKey}
-                    style={styles.dayCell}
-                    accessible
+                    style={({ pressed }) => [styles.dayCell, pressed && styles.pressed]}
+                    accessibilityRole="button"
                     accessibilityLabel={label}
+                    accessibilityHint={
+                      future ? undefined : 'Opens a confirmation to correct this date'
+                    }
+                    accessibilityState={{ disabled: future || editingDisabled }}
+                    disabled={future || editingDisabled}
+                    onPress={() =>
+                      onSelectDate(
+                        day.dateKey,
+                        currentResult.records.find(
+                          (record) => record.routineDate === day.dateKey,
+                        ) ?? null,
+                      )
+                    }
                   >
                     <View
                       style={[styles.day, taken && styles.takenDay, isToday && styles.todayDay]}
@@ -152,7 +174,7 @@ export function MonthCalendar({ repository, today }: Props) {
                         {taken ? '✓' : future ? ' ' : '·'}
                       </Text>
                     </View>
-                  </View>
+                  </Pressable>
                 );
               })}
             </View>
@@ -160,6 +182,7 @@ export function MonthCalendar({ repository, today }: Props) {
           <Text accessibilityLiveRegion="polite" style={styles.summary}>
             {confirmed.size} {confirmed.size === 1 ? 'day' : 'days'} recorded this month
           </Text>
+          <Text style={styles.editHint}>Tap a past date to correct its record.</Text>
           <View style={styles.legend}>
             <Text style={styles.legendItem}>
               <Text style={styles.tick}>✓</Text> Recorded
@@ -238,6 +261,7 @@ const styles = StyleSheet.create({
   takenNumber: { color: '#9BF2CD', fontWeight: '700' },
   marker: { color: '#A5B3AD', fontSize: 12, minHeight: 18 },
   takenMarker: { color: '#9BF2CD' },
+  editHint: { color: '#A5B3AD', fontSize: 12, textAlign: 'center', marginTop: 10 },
   summary: { color: '#D4DED8', fontSize: 13, marginTop: 18, textAlign: 'center' },
   legend: {
     flexDirection: 'row',

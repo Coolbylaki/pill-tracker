@@ -12,7 +12,7 @@ import {
 
 import { MonthCalendar } from '../components/MonthCalendar';
 import type { PillRecord, PillRepository } from '../data/pills';
-import { formatDay, formatTime, localDateKey } from '../utils/dates';
+import { dateFromKey, formatDay, formatTime, localDateKey } from '../utils/dates';
 
 interface Props {
   repository: PillRepository;
@@ -24,6 +24,7 @@ export function HomeScreen({ repository }: Props) {
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [calendarRevision, setCalendarRevision] = useState(0);
   const busyRef = useRef(false);
   const dialogRef = useRef(false);
   const requestRef = useRef(0);
@@ -90,6 +91,7 @@ export function HomeScreen({ repository }: Props) {
     } finally {
       busyRef.current = false;
       await refresh();
+      setCalendarRevision((value) => value + 1);
       setBusy(false);
     }
   }
@@ -117,6 +119,62 @@ export function HomeScreen({ repository }: Props) {
           style: action === 'undo' ? 'destructive' : 'default',
           onPress: () => {
             void write(action, expectedDate);
+          },
+        },
+      ],
+      { cancelable: true, onDismiss: dismiss },
+    );
+  }
+
+  async function saveCorrection(dateKey: string, existing: PillRecord | null) {
+    dialogRef.current = false;
+    if (busyRef.current) return;
+    busyRef.current = true;
+    requestRef.current += 1;
+    setBusy(true);
+    try {
+      const now = new Date();
+      if (existing) await repository.undo(existing, now);
+      else await repository.markDateTaken(dateKey, now);
+    } catch {
+      Alert.alert('Couldn’t save the correction', 'Please check the selected date and try again.');
+    } finally {
+      busyRef.current = false;
+      await refresh();
+      setCalendarRevision((value) => value + 1);
+      setBusy(false);
+    }
+  }
+
+  function openDateCorrection(dateKey: string, existing: PillRecord | null) {
+    if (dialogRef.current || busyRef.current || loading || error) return;
+    const currentDate = localDateKey(new Date());
+    if (dateKey > currentDate) return;
+    if (dateKey === currentDate) {
+      openConfirmation(record ? 'undo' : 'confirm');
+      return;
+    }
+    dialogRef.current = true;
+    const label = dateFromKey(dateKey).toLocaleDateString(undefined, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+    const dismiss = () => {
+      dialogRef.current = false;
+    };
+    Alert.alert(
+      existing ? `Remove the record for ${label}?` : `Mark ${label} as taken?`,
+      existing
+        ? 'This removes only the selected day’s record.'
+        : 'Confirm only if you took your pills on this date. No pill-taking time will be added.',
+      [
+        { text: 'Cancel', style: 'cancel', onPress: dismiss },
+        {
+          text: existing ? 'Remove record' : 'Mark as taken',
+          style: existing ? 'destructive' : 'default',
+          onPress: () => {
+            void saveCorrection(dateKey, existing);
           },
         },
       ],
@@ -167,7 +225,9 @@ export function HomeScreen({ repository }: Props) {
               (loading
                 ? 'Just a moment.'
                 : record
-                  ? `Taken today at ${formatTime(record.takenAt)}`
+                  ? record.takenAt
+                    ? `Taken today at ${formatTime(record.takenAt)}`
+                    : 'Marked as taken today'
                   : 'After taking your pills, record it here.')}
           </Text>
         </View>
@@ -221,7 +281,13 @@ export function HomeScreen({ repository }: Props) {
         )}
       </View>
 
-      <MonthCalendar repository={repository} today={today} />
+      <MonthCalendar
+        repository={repository}
+        today={today}
+        revision={calendarRevision}
+        editingDisabled={loading || busy || !!error}
+        onSelectDate={openDateCorrection}
+      />
 
       <View style={styles.footer}>
         <View style={styles.dot} />

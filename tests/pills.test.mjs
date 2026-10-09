@@ -95,10 +95,10 @@ test('a newer database version is rejected without modifying its records', async
   const database = new DatabaseSync(':memory:');
   try {
     database.exec(
-      "PRAGMA user_version = 2; CREATE TABLE sentinel (value TEXT); INSERT INTO sentinel VALUES ('keep');",
+      "PRAGMA user_version = 3; CREATE TABLE sentinel (value TEXT); INSERT INTO sentinel VALUES ('keep');",
     );
     await assert.rejects(initializeDatabase(adapter(database)), /newer app version/);
-    assert.equal(database.prepare('PRAGMA user_version').get().user_version, 2);
+    assert.equal(database.prepare('PRAGMA user_version').get().user_version, 3);
     assert.equal(database.prepare('SELECT value FROM sentinel').get().value, 'keep');
   } finally {
     database.close();
@@ -136,6 +136,77 @@ test('monthly history includes both month boundaries, excludes adjacent months, 
       (await repository.getMonthRecords(new Date(2026, 11, 1))).map((record) => record.routineDate),
       ['2026-12-31'],
     );
+  } finally {
+    database.close();
+  }
+});
+
+test('version-one records survive migration with their original dates and timestamps', async () => {
+  const database = new DatabaseSync(':memory:');
+  try {
+    database.exec(`
+      CREATE TABLE pill_records (routine_date TEXT PRIMARY KEY NOT NULL, taken_at TEXT NOT NULL);
+      INSERT INTO pill_records VALUES ('2026-10-08', '2026-10-08T06:12:00.000Z');
+      PRAGMA user_version = 1;
+    `);
+    await initializeDatabase(adapter(database));
+    await initializeDatabase(adapter(database));
+    const repository = createPillRepository(adapter(database));
+    assert.deepEqual(
+      { ...(await repository.getRecord('2026-10-08')) },
+      {
+        routineDate: '2026-10-08',
+        takenAt: '2026-10-08T06:12:00.000Z',
+        recordedAt: '2026-10-08T06:12:00.000Z',
+      },
+    );
+    assert.equal(database.prepare('PRAGMA user_version').get().user_version, 2);
+  } finally {
+    database.close();
+  }
+});
+
+test('past-day corrections survive reopening, omit unknown taking times, and leave today unchanged', async () => {
+  const directory = mkdtempSync(join(tmpdir(), 'pill-correction-test-'));
+  const path = join(directory, 'records.db');
+  let database = new DatabaseSync(path);
+  try {
+    await initializeDatabase(adapter(database));
+    let repository = createPillRepository(adapter(database));
+    const now = new Date(2026, 9, 9, 10);
+    const today = await repository.confirm(now);
+    const past = await repository.markDateTaken('2026-10-08', now);
+    assert.equal(past.takenAt, null);
+    assert.equal(past.recordedAt, now.toISOString());
+    const duplicate = await repository.markDateTaken('2026-10-08', new Date(2026, 9, 9, 11));
+    assert.equal(duplicate.recordedAt, past.recordedAt);
+    database.close();
+    database = new DatabaseSync(path);
+    await initializeDatabase(adapter(database));
+    repository = createPillRepository(adapter(database));
+    assert.deepEqual({ ...(await repository.getRecord('2026-10-08')) }, { ...past });
+    await repository.undo(past, now);
+    assert.equal(await repository.getRecord('2026-10-08'), null);
+    assert.deepEqual({ ...(await repository.getRecord('2026-10-09')) }, { ...today });
+  } finally {
+    database.close();
+    rmSync(directory, { recursive: true, force: true });
+  }
+});
+
+test('future and malformed dates are rejected without changing stored history', async () => {
+  const database = new DatabaseSync(':memory:');
+  try {
+    await initializeDatabase(adapter(database));
+    const repository = createPillRepository(adapter(database));
+    const now = new Date(2026, 9, 9, 10);
+    for (const key of ['2026-10-10', '2026-02-30', '2026-13-01', '2026-1-01', 'not-a-date']) {
+      await assert.rejects(repository.markDateTaken(key, now));
+    }
+    const future = await repository.confirm(new Date(2026, 9, 10, 8));
+    await assert.rejects(repository.undo(future, now), /Future dates/);
+    assert.ok(await repository.getRecord('2026-10-10'));
+    assert.equal(database.prepare('SELECT COUNT(*) AS count FROM pill_records').get().count, 1);
   } finally {
     database.close();
   }

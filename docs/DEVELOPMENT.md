@@ -119,3 +119,26 @@ Implemented on 2026-10-09:
 - March 2026 displays all 31 dates across six rows without clipping.
 
 The calendar display checkpoint is complete. Past-date editing and reminder verification remain separate checkpoints.
+
+## Date correction checkpoint
+
+Implemented on 2026-10-09:
+
+- Tap an unrecorded past date to mark it taken, or a recorded date to remove its record. Both actions require confirmation showing the selected date.
+- Future dates are disabled; storage validation also rejects invalid and future dates for correction operations.
+- Today's calendar cell uses the existing daily confirmation/undo flow and refreshes the main card. Past-date changes leave today's status intact.
+- Writes share the daily recording lock. Calendar history refreshes after corrections, and removing a record checks its recorded timestamp to avoid deleting a newer replacement.
+- Database schema version 2 separates nullable taking time from recording time. Past-day additions have an unknown taking time and store when the correction was recorded. Existing schema-version-1 records migrate with dates and taking times preserved.
+- Twelve automated tests pass, including schema migration, correction persistence after reopening, day isolation, and future/invalid-date rejection.
+
+### Phone checks still needed
+
+Press r in the running Expo terminal for a full reload so the database migration initializes. No server restart or data clearing is needed.
+
+1. Verify previously saved ticks and today's status are still present.
+2. Tap an unrecorded past day and cancel: it remains unchanged. Confirm the addition: the tick and count update; today's card is unchanged.
+3. Reload: the correction persists. Tap that recorded date and cancel removal: it stays recorded. Confirm removal: its tick disappears.
+4. Tap a future date: no edit dialog opens.
+5. Edit today from the calendar: the main card and calendar agree. Undo any artificial test records afterward.
+
+Reminder delivery and development-build verification remain separate checkpoints.
