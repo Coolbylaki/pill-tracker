@@ -10,6 +10,13 @@ This checkpoint tests Android's local notification delivery. It does not enable 
 - The development identifiers are `com.coolbylaki.pilltracker.dev` and `com.coolbylaki.pilltracker.test`. Public/personal release identifiers will be decided later.
 - Expo project: https://expo.dev/accounts/coolbylaki/projects/pill-tracker
 
+## Completed test builds
+
+Built on 2026-10-09 from commit `63aad66`:
+
+- [Install Pill Tracker Test](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/7c8fee0e-d9f7-4257-b6ca-94118f2249cf) for the server-independent phone checks below.
+- [Install Pill Tracker Dev](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/6d2186fe-e615-4126-9a62-167e274dff81) for live development.
+
 ## Install and enable
 
 1. Open the completed EAS build link on the Android phone, download its APK, and install it. Android may ask you to allow installation from that browser.

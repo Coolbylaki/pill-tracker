@@ -158,5 +158,15 @@ Prepared on 2026-10-09:
 - Native local notifications, notification channel/permission handling, exact-alarm manifest permission, and explicit config plugins.
 - Debug/test-only panel schedules 30s/90s pairs now or tomorrow, lists pending counts, simulates today's cancellation, and cancels all owned tests. No remote push tokens or messaging services are used.
 - Actual daily confirmation cancels matching test reminders after the pill record is saved; cancellation failure does not misreport the record as unsaved.
-- Sixteen automated tests pass; Expo Doctor passed all 21 checks before final plugin configuration. Android bundle generation passed. The inherited npm audit remains 22 affected dependency entries after removing EAS CLI from app dependencies.
+- Sixteen automated tests pass; Expo Doctor passed all 21 checks after final plugin configuration. Android bundle generation passed. The inherited npm audit remains 22 affected dependency entries after removing EAS CLI from app dependencies.
 - Detailed phone checks and architectural limitations are in REMINDER_TESTING.md. Native delivery and production scheduling are not yet verified.
+
+### Android cloud-build results (2026-10-09)
+
+Both APKs completed successfully from commit `63aad66e8408a9b2e31d7ec040ca76b24496cd15`:
+
+- [Development APK](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/6d2186fe-e615-4126-9a62-167e274dff81): live development client, package `com.coolbylaki.pilltracker.dev`.
+- [Standalone reminder-test APK](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/7c8fee0e-d9f7-4257-b6ca-94118f2249cf): server-independent test app, package `com.coolbylaki.pilltracker.test`.
+- GitHub Actions passed for the source commit. The initial cloud submission returned a temporary HTTP 503; the retry succeeded without source changes.
+
+Cloud compilation and APK generation are verified. Installation and notification delivery on the physical phone remain pending; follow REMINDER_TESTING.md. These builds do not enable the production one-hour/six-hour schedule.
