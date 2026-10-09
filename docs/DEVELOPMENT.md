@@ -46,3 +46,17 @@ Use accelerated reminder times during testing, then verify real daily timing. Cl
 - Google Play policies: https://support.google.com/googleplay/android-developer/answer/18258653
 
 Check current requirements at the implementation and release milestones.
+
+## App scaffold and tooling
+
+- Expo SDK 57, React Native 0.86, React 19, TypeScript 6; generated with the official blank-typescript template.
+- Strict TypeScript is enabled. The minimal template has no navigation or lint setup.
+- ESLint uses Expo's flat configuration. Prettier runs independently; eslint-config-prettier prevents conflicts.
+- Node.js 24 LTS is recommended and used in CI; Node.js 26.1.0 is the current local runtime and meets the dependency engine requirement.
+- Use `npm run check` before committing. Use `npm run format` to apply formatting.
+- VS Code extension recommendations are included. In VS Code, select Prettier as the formatter and enable format-on-save if desired.
+- Physical-device verification is pending. A successful Android bundle does not prove installation, rendering, or reminder delivery on the user's phone.
+
+## Known dependency follow-up
+
+The initial official scaffold's npm audit reported 22 affected dependency entries (15 high, 7 moderate), propagated through Expo and React Native tooling. The underlying findings include braces, node-forge, and uuid. The suggested force fix downgrades the app to older incompatible Expo/React Native versions, so it was not applied. Track compatible upstream patches and reassess before any distributed release; do not treat the current audit as clean. The initial scaffold passed TypeScript, Expo dependency compatibility, and Android bundle export checks.
