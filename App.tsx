@@ -92,6 +92,13 @@ export default function App() {
       if (currentDate !== date) {
         date = currentDate;
         update();
+      } else if (AppState.currentState === 'active') {
+        const request = scheduleRequest.current;
+        void readDailyReminderStatus()
+          .then((status) => {
+            if (request === scheduleRequest.current) setReminderStatus(status);
+          })
+          .catch(() => undefined);
       }
     }, 15_000);
     return () => {

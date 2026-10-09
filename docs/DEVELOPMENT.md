@@ -234,3 +234,5 @@ The 30s/90s delivery-test controls intentionally ignore the reminders toggle; th
 - Daily notifications are separate from the independent 30s/90s tests, which remain explicitly labeled as ignoring the Settings toggle.
 - Twenty-two JavaScript tests and all Expo Doctor checks passed during integration. Seven native Kotlin planner tests cover late setup, confirm/undo, disabled reminders, midnight/year boundaries, stale/duplicate delivery, DST/time zones, and consecutive-day renewal. Both EAS profiles run these native tests as required build tasks; their results remain pending until the builds finish.
 - Detailed accelerated, overnight, and reboot phone checks and operational limits are documented in DAILY_REMINDER_TESTING.md. Real-schedule physical-phone results remain pending.
+
+Foreground display refinement: the app reads native schedule status every 15 seconds while active, without rescheduling alarms. This keeps next-reminder dates current after delivery while the screen stays open. Responses superseded by a new reconciliation request are ignored.
