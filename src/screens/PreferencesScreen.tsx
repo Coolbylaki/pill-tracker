@@ -285,22 +285,11 @@ export function PreferencesScreen({
       {(!onboarding || step === 2) && (
         <View style={styles.card}>
           <Text style={styles.heading}>Permissions</Text>
-          <Text
-            accessibilityLiveRegion="polite"
-            style={[
-              styles.permissionStatus,
-              permission === 'Notifications allowed' && styles.permissionAllowed,
-            ]}
-          >
+          <Text accessibilityLiveRegion="polite" style={styles.copy}>
             {permission}
           </Text>
           {reminderStatus?.supported && (
-            <Text
-              style={[
-                styles.permissionStatus,
-                reminderStatus.exactAllowed && styles.permissionAllowed,
-              ]}
-            >
+            <Text style={styles.copy}>
               {reminderStatus.exactAllowed
                 ? 'Alarms & reminders allowed'
                 : 'Alarms & reminders access is off'}
@@ -418,22 +407,6 @@ const makeStyles = (colors: Palette) =>
     },
     heading: { color: colors.text, fontSize: 18, fontWeight: '600' },
     copy: { color: colors.muted, fontSize: 14, lineHeight: 22 },
-    permissionStatus: {
-      color: colors.text,
-      backgroundColor: colors.soft,
-      borderColor: colors.border,
-      borderWidth: 1,
-      borderRadius: 12,
-      padding: 12,
-      fontSize: 14,
-      fontWeight: '600',
-      lineHeight: 22,
-    },
-    permissionAllowed: {
-      color: colors.accent,
-      borderColor: colors.accent,
-      backgroundColor: colors.taken,
-    },
     notice: { color: colors.accent, fontSize: 13, lineHeight: 21 },
     row: { flexDirection: 'row', gap: 12, alignItems: 'center' },
     grow: { flex: 1 },

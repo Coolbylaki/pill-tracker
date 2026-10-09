@@ -278,3 +278,9 @@ The user tested the repaired standalone Test APK from `fcd3779` and reported all
 - Undo immediately restored today's critical reminder while the first remained tomorrow because today's first time had already passed.
 
 The reported settings-persistence and Undo checkpoint is complete. These checks establish saved preferences and schedule reconciliation on the phone, not actual daily notification delivery. Accelerated real-schedule delivery, notification review/cancellation, locked/swiped-away delivery, overnight renewal, and reboot restoration remain pending. Permission navigation improvements are a separate follow-up discussed with the user.
+
+### Reported accelerated daily delivery and permission styling preference (2026-10-09)
+
+The user reported all three accelerated daily-schedule checks passed: temporary 3-minute/6-minute settings, the expected upcoming times, and both notifications with the app swiped away and phone locked. Exact arrival timestamps were not supplied. This verifies accelerated real-schedule delivery on this phone; notification review/cancellation, overnight renewal, and reboot restoration remain pending.
+
+The user requested reverting the two permission status messages to their previous subtle presentation. Both notification access and Alarms & reminders access now use the original muted body-text style in setup and Settings. Status wording, permission navigation, and scheduler behavior are unchanged. This JavaScript-only visual change requires a new standalone APK to appear in the installed Test app; the existing repaired Dev APK supports it through the development server.

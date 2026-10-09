@@ -37,6 +37,8 @@ The user reported all four saved-settings and Undo regression checks passed on 2
 
 ## Accelerated real-schedule check
 
+Reported passed on 2026-10-09: temporary 3-minute/6-minute scheduling, displayed upcoming times, and both notifications while locked with the app swiped away. Exact arrival timestamps were not supplied. Notification review/cancellation and longer lifecycle checks below remain pending.
+
 For an unconfirmed routine day, temporarily set the pill time to the current hour/minute and the optional delays to **0.05 hours** (3 minutes) and **0.1 hours** (6 minutes). Save promptly and check the dated times on Home. If today is already confirmed, the reminders correctly move to tomorrow; use that day rather than undoing a genuine record solely to trigger notifications. Undo is suitable for an artificial test entry only.
 
 - Wait for the first and critical reminders. Repeat an appropriate future check with the phone locked and the app swiped away from Recents.
