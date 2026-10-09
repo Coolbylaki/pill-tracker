@@ -217,3 +217,9 @@ Both updated Android APKs completed successfully from commit `3d52c015db12060351
 - [Install updated Pill Tracker Dev](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/2abefe88-57ef-4aa3-99e1-a55491510ee0): native time-picker support for live development.
 
 Install over the matching existing app to preserve its database. Existing users see setup once because the older app had no preferences row. Physical-phone setup and Settings results remain pending; the checklist above is the next review step. Production reminders remain inactive.
+
+### Reported setup and Settings phone results (2026-10-09)
+
+The user installed the updated standalone Test APK and reported that setup works, existing history remains, saved choices survive reopening, Cancel discards changes, and Save persists changes. The setup and Settings phone checkpoint is complete.
+
+The 30s/90s delivery-test controls intentionally ignore the reminders toggle; the toggle governs the daily routine schedule. This distinction was explained to the user before starting production reminder integration.
