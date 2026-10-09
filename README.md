@@ -4,7 +4,7 @@ An offline Android app for one daily pill-taking confirmation, a calendar of pas
 
 ## Project status
 
-Preparation is complete. The minimal Expo SDK 57 / TypeScript app and code checks are set up. Pill tracking features and physical-device verification are the next milestones.
+Preparation and the minimal Expo SDK 57 / TypeScript scaffold are complete. Code checks pass locally and on GitHub. On 2026-10-09, the user confirmed that the starter screen runs on their Android phone through Expo Go. Pill tracking features and development-build reminder verification remain pending.
 
 ## Agreed direction
 

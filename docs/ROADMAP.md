@@ -12,6 +12,6 @@ Each milestone ends with a reviewable result, appropriate verification, a descri
 8. **Backup and public preparation**: choose backup behavior; add separate personal/public build configuration, ads with required consent, privacy policy, data declarations, and store materials.
 9. **Google Play release**: verify account eligibility and current health/advertising/testing requirements, perform required testing, review the concrete release, then publish when explicitly requested.
 
-## Later options
+## Completed checkpoints
 
 Backup/export, optional cloud sync, home-screen widget, configurable reminder offsets, and paid public ad removal. These are proposals, not committed version-1 scope.

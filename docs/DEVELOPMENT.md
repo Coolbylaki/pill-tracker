@@ -55,7 +55,7 @@ Check current requirements at the implementation and release milestones.
 - Node.js 24 LTS is recommended and used in CI; Node.js 26.1.0 is the current local runtime and meets the dependency engine requirement.
 - Use `npm run check` before committing. Use `npm run format` to apply formatting.
 - VS Code extension recommendations are included. In VS Code, select Prettier as the formatter and enable format-on-save if desired.
-- Physical-device verification is pending. A successful Android bundle does not prove installation, rendering, or reminder delivery on the user's phone.
+- On 2026-10-09, the user confirmed that Expo Go connects successfully and displays the initial screen on their Android phone. This verifies the starter UI workflow. A standalone development build and reminder delivery have not yet been tested.
 
 ## Known dependency follow-up
 
