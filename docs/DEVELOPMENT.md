@@ -267,3 +267,14 @@ Both APKs built successfully from `fcd3779`, with all 10 required Android tests 
 - [Install repaired Pill Tracker Dev](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/d4234c7f-43ff-408e-8dbb-fabdfdaf1178): required native storage bridge for live development.
 
 Install over the matching existing app and open once; keep its data. The reported physical-phone persistence and Undo cases still require the saved-settings regression checklist. Automated tests do not establish that the physical-phone report is resolved, or prove overnight/reboot delivery.
+
+### Reported shared-storage repair phone results (2026-10-09)
+
+The user tested the repaired standalone Test APK from `fcd3779` and reported all four regressions passed:
+
+- Light theme remained selected after saving and reopening.
+- A five-hour critical delay persisted and correctly changed the home screen's upcoming time.
+- Reminders off persisted after saving and reopening; the home screen reflected the disabled schedule.
+- Undo immediately restored today's critical reminder while the first remained tomorrow because today's first time had already passed.
+
+The reported settings-persistence and Undo checkpoint is complete. These checks establish saved preferences and schedule reconciliation on the phone, not actual daily notification delivery. Accelerated real-schedule delivery, notification review/cancellation, locked/swiped-away delivery, overnight renewal, and reboot restoration remain pending. Permission navigation improvements are a separate follow-up discussed with the user.

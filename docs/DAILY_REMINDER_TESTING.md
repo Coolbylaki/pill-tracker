@@ -19,7 +19,7 @@ In Settings, allow notifications and **Alarms & reminders**. The app now reports
 
 ## Saved-settings regression checks
 
-After installing the shared-storage repair, repeat these before delivery testing:
+The user reported all four saved-settings and Undo regression checks passed on 2026-10-09. This checklist remains available for later updates; actual daily delivery is the next phone check.
 
 1. Choose Light and Save. Home changes immediately. Reopen Settings and restart the app: Light stays selected.
 2. Set critical delay to 5 hours and Save. The saved schedule changes to pill time +5 hours. Reopen Settings and restart: the value remains 5.
