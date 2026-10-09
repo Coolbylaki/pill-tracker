@@ -131,7 +131,7 @@ Implemented on 2026-10-09:
 - Database schema version 2 separates nullable taking time from recording time. Past-day additions have an unknown taking time and store when the correction was recorded. Existing schema-version-1 records migrate with dates and taking times preserved.
 - Twelve automated tests pass, including schema migration, correction persistence after reopening, day isolation, and future/invalid-date rejection.
 
-### Phone checks still needed
+### Date-correction phone verification checklist
 
 Press r in the running Expo terminal for a full reload so the database migration initializes. No server restart or data clearing is needed.
 
@@ -142,3 +142,9 @@ Press r in the running Expo terminal for a full reload so the database migration
 5. Edit today from the calendar: the main card and calendar agree. Undo any artificial test records afterward.
 
 Reminder delivery and development-build verification remain separate checkpoints.
+
+### Reported date-correction results (2026-10-09)
+
+The user reported that all requested checks passed: existing records survived the update, canceling additions/removals left records unchanged, confirmed corrections persisted after reload, future dates did not open an editor, and editing today kept the calendar and main card synchronized.
+
+The date-correction checkpoint is complete. Reminder feasibility and development-build testing are next.

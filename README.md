@@ -4,7 +4,7 @@ An offline Android app for one daily pill-taking confirmation, a calendar of pas
 
 ## Project status
 
-Preparation and the minimal Expo SDK 57 / TypeScript scaffold are complete. Code checks pass locally and on GitHub. On 2026-10-09, the user confirmed that the starter screen runs on their Android phone through Expo Go. The first dark home screen and local daily confirmation flow are implemented. The user verified confirmation persistence, undo persistence, cancellation, and reopening through Expo Go on their phone. The monthly history calendar is implemented and verified by the user on their phone, including year-boundary navigation and the six-row March 2026 layout. Past-date correction is implemented and awaits phone verification. Development-build reminders remain pending.
+Preparation and the minimal Expo SDK 57 / TypeScript scaffold are complete. Code checks pass locally and on GitHub. On 2026-10-09, the user confirmed that the starter screen runs on their Android phone through Expo Go. The first dark home screen and local daily confirmation flow are implemented. The user verified confirmation persistence, undo persistence, cancellation, and reopening through Expo Go on their phone. The monthly history calendar is implemented and verified by the user on their phone, including year-boundary navigation and the six-row March 2026 layout. Past-date corrections, preservation of existing records, future-date protection, and synchronization with today were verified by the user on their phone. Development-build reminders remain pending.
 
 ## Agreed direction
 
