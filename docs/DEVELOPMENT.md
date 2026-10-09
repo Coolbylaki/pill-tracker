@@ -294,3 +294,9 @@ Both October 9 daily reminder slots were used during accelerated testing. Delive
 The next planned check is the night of October 9–10, Europe/Belgrade: temporarily save pill time 00:00 with the default +1-hour/+6-hour delays, verify Home shows October 10 at 01:00 and 06:00, reboot and unlock once, then leave the app closed overnight. Restore normal settings afterward. The test is planned only; wait for the user's actual arrival results before claiming overnight renewal or reboot delivery passed.
 
 Permission navigation remains a phone-review item. The native code already targets this app's exact-alarm page, but the user previously saw broad Android settings pages. Normal daily use, final branding, removal of Test labeling and the test panel, and a data-preserving personal-release transition remain later checkpoints. The latest standalone APK still contains `fcd3779`; no new standalone build has been made for the subtle permission styling in `7ce244c`.
+
+### Reported overnight and reboot results (2026-10-10)
+
+The user reported that both the overnight and reboot checks passed, following the October 9–10 test plan recorded above. Overnight delivery and reboot restoration are now marked passed based on this physical-phone report. Exact arrival timestamps were not supplied; the planned 01:00 and 06:00 times are not recorded as measured arrival times.
+
+Confirmation after the first reminder preventing the critical notification and permission navigation remain pending. Continue with normal daily use and restore usual settings after temporary testing; do not delay taking pills, erase real history, or reset delivered reminder slots to create another test.
