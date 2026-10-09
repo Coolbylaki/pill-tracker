@@ -1,3 +1,4 @@
+import { useTheme, type Palette } from '../theme';
 import Constants from 'expo-constants';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
@@ -13,6 +14,8 @@ import { localDateKey } from '../utils/dates';
 export const showReminderTests = __DEV__ || Constants.expoConfig?.extra?.reminderTests === true;
 
 export function ReminderTestPanel({ disabled }: { disabled: boolean }) {
+  const colors = useTheme();
+  const styles = makeStyles(colors);
   const [expanded, setExpanded] = useState(false);
   const [busy, setBusy] = useState(false);
   const [pending, setPending] = useState<number | null>(null);
@@ -147,33 +150,34 @@ export function ReminderTestPanel({ disabled }: { disabled: boolean }) {
   );
 }
 
-const styles = StyleSheet.create({
-  card: {
-    borderRadius: 24,
-    borderWidth: 1,
-    borderColor: '#2B3B34',
-    backgroundColor: '#17221F',
-    padding: 18,
-  },
-  heading: {
-    minHeight: 48,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    gap: 12,
-  },
-  title: { color: '#F1F5F2', fontSize: 17, fontWeight: '600' },
-  accent: { color: '#9BF2CD', fontSize: 13, fontWeight: '600', textAlign: 'center' },
-  copy: { color: '#A5B3AD', fontSize: 13, lineHeight: 21 },
-  content: { gap: 12, paddingTop: 12 },
-  status: { color: '#F1F5F2', fontSize: 13, lineHeight: 21 },
-  button: {
-    backgroundColor: '#26342E',
-    minHeight: 48,
-    borderRadius: 14,
-    padding: 12,
-    justifyContent: 'center',
-  },
-  disabled: { opacity: 0.5 },
-  pressed: { opacity: 0.7 },
-});
+const makeStyles = (colors: Palette) =>
+  StyleSheet.create({
+    card: {
+      borderRadius: 24,
+      borderWidth: 1,
+      borderColor: colors.border,
+      backgroundColor: colors.surface,
+      padding: 18,
+    },
+    heading: {
+      minHeight: 48,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      gap: 12,
+    },
+    title: { color: colors.text, fontSize: 17, fontWeight: '600' },
+    accent: { color: colors.accent, fontSize: 13, fontWeight: '600', textAlign: 'center' },
+    copy: { color: colors.muted, fontSize: 13, lineHeight: 21 },
+    content: { gap: 12, paddingTop: 12 },
+    status: { color: colors.text, fontSize: 13, lineHeight: 21 },
+    button: {
+      backgroundColor: colors.soft,
+      minHeight: 48,
+      borderRadius: 14,
+      padding: 12,
+      justifyContent: 'center',
+    },
+    disabled: { opacity: 0.5 },
+    pressed: { opacity: 0.7 },
+  });

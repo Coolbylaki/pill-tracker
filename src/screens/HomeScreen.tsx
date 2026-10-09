@@ -1,3 +1,6 @@
+import type { Preferences } from '../data/preferences';
+import { routineTimeLabel } from '../reminders/routinePlan';
+import { useTheme, type Palette } from '../theme';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   ActivityIndicator,
@@ -18,9 +21,13 @@ import { dateFromKey, formatDay, formatTime, localDateKey } from '../utils/dates
 
 interface Props {
   repository: PillRepository;
+  preferences: Preferences;
+  onOpenSettings: () => void;
 }
 
-export function HomeScreen({ repository }: Props) {
+export function HomeScreen({ repository, preferences, onOpenSettings }: Props) {
+  const colors = useTheme();
+  const styles = makeStyles(colors);
   const [today, setToday] = useState(() => new Date());
   const [record, setRecord] = useState<PillRecord | null>(null);
   const [loading, setLoading] = useState(true);
@@ -198,9 +205,20 @@ export function HomeScreen({ repository }: Props) {
   return (
     <ScrollView contentContainerStyle={styles.page}>
       <View style={styles.header}>
-        <Text style={styles.brand}>PILL TRACKER</Text>
+        <View style={styles.cardTop}>
+          <Text style={styles.brand}>PILL TRACKER</Text>
+          <Pressable
+            accessibilityRole="button"
+            disabled={busy || loading}
+            onPress={onOpenSettings}
+            style={styles.settingsButton}
+          >
+            <Text style={styles.retryText}>Settings</Text>
+          </Pressable>
+        </View>
         <Text style={styles.title}>A little peace{'\n'}of mind.</Text>
         <Text style={styles.subtitle}>One daily check-in. One less thing to remember.</Text>
+        <Text style={styles.subtitle}>Daily pill time: {routineTimeLabel(preferences)}</Text>
       </View>
 
       <View style={styles.card}>
@@ -217,7 +235,7 @@ export function HomeScreen({ repository }: Props) {
         <View style={styles.status} accessibilityLiveRegion="polite">
           <View style={[styles.symbol, record && styles.symbolTaken]}>
             {loading || busy ? (
-              <ActivityIndicator color="#9BF2CD" />
+              <ActivityIndicator color={colors.accent} />
             ) : (
               <Text style={styles.symbolText}>{record && !error ? '✓' : '＋'}</Text>
             )}
@@ -310,102 +328,114 @@ export function HomeScreen({ repository }: Props) {
   );
 }
 
-const styles = StyleSheet.create({
-  page: {
-    flexGrow: 1,
-    padding: 24,
-    paddingTop: 32,
-    gap: 32,
-    width: '100%',
-    maxWidth: 560,
-    alignSelf: 'center',
-  },
-  header: { gap: 12 },
-  brand: { color: '#9BF2CD', fontSize: 12, fontWeight: '700', letterSpacing: 3 },
-  title: { color: '#F1F5F2', fontSize: 40, fontWeight: '700', letterSpacing: -1.4, lineHeight: 46 },
-  subtitle: { color: '#A5B3AD', fontSize: 15, lineHeight: 23, maxWidth: 300 },
-  card: {
-    backgroundColor: '#17221F',
-    borderColor: '#2B3B34',
-    borderWidth: 1,
-    borderRadius: 28,
-    padding: 24,
-  },
-  cardTop: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: 12,
-    flexWrap: 'wrap',
-  },
-  eyebrow: { color: '#A5B3AD', fontSize: 11, fontWeight: '700', letterSpacing: 2 },
-  badge: {
-    backgroundColor: '#26342E',
-    borderRadius: 20,
-    paddingHorizontal: 12,
-    paddingVertical: 7,
-  },
-  badgeTaken: { backgroundColor: '#234235' },
-  badgeText: { color: '#B5C4BC', fontSize: 11, fontWeight: '600' },
-  badgeTextTaken: { color: '#9BF2CD' },
-  date: { color: '#F1F5F2', fontSize: 20, fontWeight: '600', marginTop: 18 },
-  status: { alignItems: 'center', paddingVertical: 36, gap: 10 },
-  symbol: {
-    width: 68,
-    height: 68,
-    borderRadius: 34,
-    borderWidth: 1,
-    borderColor: '#3C5147',
-    backgroundColor: '#23332B',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 8,
-  },
-  symbolTaken: { backgroundColor: '#234235', borderColor: '#477E63' },
-  symbolText: { color: '#9BF2CD', fontSize: 32 },
-  statusTitle: { color: '#F1F5F2', fontSize: 22, fontWeight: '600', textAlign: 'center' },
-  statusDescription: { color: '#A5B3AD', fontSize: 14, lineHeight: 22, textAlign: 'center' },
-  button: {
-    minHeight: 76,
-    borderRadius: 20,
-    backgroundColor: '#9BF2CD',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 18,
-  },
-  buttonTaken: { backgroundColor: '#233C30', borderColor: '#3D604C', borderWidth: 1 },
-  buttonLoading: { opacity: 0.6 },
-  buttonText: { color: '#10231A', fontSize: 18, fontWeight: '700', textAlign: 'center' },
-  buttonTextTaken: { color: '#9BF2CD' },
-  pressed: { opacity: 0.8 },
-  undo: {
-    minHeight: 48,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 10,
-    padding: 8,
-  },
-  undoText: {
-    color: '#B5C4BC',
-    fontSize: 13,
-    textDecorationLine: 'underline',
-    textAlign: 'center',
-  },
-  retry: {
-    minHeight: 64,
-    borderRadius: 20,
-    backgroundColor: '#26342E',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  retryText: { color: '#9BF2CD', fontSize: 16, fontWeight: '600' },
-  footer: {
-    flexDirection: 'row',
-    gap: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingBottom: 12,
-  },
-  dot: { width: 5, height: 5, borderRadius: 3, backgroundColor: '#9BF2CD' },
-  footerText: { color: '#A5B3AD', fontSize: 12, flexShrink: 1 },
-});
+const makeStyles = (colors: Palette) =>
+  StyleSheet.create({
+    page: {
+      flexGrow: 1,
+      padding: 24,
+      paddingTop: 32,
+      gap: 32,
+      width: '100%',
+      maxWidth: 560,
+      alignSelf: 'center',
+    },
+    header: { gap: 12 },
+    settingsButton: { minHeight: 48, justifyContent: 'center', paddingHorizontal: 12 },
+    brand: { color: colors.accent, fontSize: 12, fontWeight: '700', letterSpacing: 3 },
+    title: {
+      color: colors.text,
+      fontSize: 40,
+      fontWeight: '700',
+      letterSpacing: -1.4,
+      lineHeight: 46,
+    },
+    subtitle: { color: colors.muted, fontSize: 15, lineHeight: 23, maxWidth: 300 },
+    card: {
+      backgroundColor: colors.surface,
+      borderColor: colors.border,
+      borderWidth: 1,
+      borderRadius: 28,
+      padding: 24,
+    },
+    cardTop: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      gap: 12,
+      flexWrap: 'wrap',
+    },
+    eyebrow: { color: colors.muted, fontSize: 11, fontWeight: '700', letterSpacing: 2 },
+    badge: {
+      backgroundColor: colors.soft,
+      borderRadius: 20,
+      paddingHorizontal: 12,
+      paddingVertical: 7,
+    },
+    badgeTaken: { backgroundColor: colors.taken },
+    badgeText: { color: colors.secondary, fontSize: 11, fontWeight: '600' },
+    badgeTextTaken: { color: colors.accent },
+    date: { color: colors.text, fontSize: 20, fontWeight: '600', marginTop: 18 },
+    status: { alignItems: 'center', paddingVertical: 36, gap: 10 },
+    symbol: {
+      width: 68,
+      height: 68,
+      borderRadius: 34,
+      borderWidth: 1,
+      borderColor: colors.symbolBorder,
+      backgroundColor: colors.symbol,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginBottom: 8,
+    },
+    symbolTaken: { backgroundColor: colors.taken, borderColor: colors.takenBorder },
+    symbolText: { color: colors.accent, fontSize: 32 },
+    statusTitle: { color: colors.text, fontSize: 22, fontWeight: '600', textAlign: 'center' },
+    statusDescription: { color: colors.muted, fontSize: 14, lineHeight: 22, textAlign: 'center' },
+    button: {
+      minHeight: 76,
+      borderRadius: 20,
+      backgroundColor: colors.accent,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 18,
+    },
+    buttonTaken: {
+      backgroundColor: colors.buttonTaken,
+      borderColor: colors.buttonBorder,
+      borderWidth: 1,
+    },
+    buttonLoading: { opacity: 0.6 },
+    buttonText: { color: colors.onAccent, fontSize: 18, fontWeight: '700', textAlign: 'center' },
+    buttonTextTaken: { color: colors.accent },
+    pressed: { opacity: 0.8 },
+    undo: {
+      minHeight: 48,
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginTop: 10,
+      padding: 8,
+    },
+    undoText: {
+      color: colors.secondary,
+      fontSize: 13,
+      textDecorationLine: 'underline',
+      textAlign: 'center',
+    },
+    retry: {
+      minHeight: 64,
+      borderRadius: 20,
+      backgroundColor: colors.soft,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    retryText: { color: colors.accent, fontSize: 16, fontWeight: '600' },
+    footer: {
+      flexDirection: 'row',
+      gap: 8,
+      alignItems: 'center',
+      justifyContent: 'center',
+      paddingBottom: 12,
+    },
+    dot: { width: 5, height: 5, borderRadius: 3, backgroundColor: colors.accent },
+    footerText: { color: colors.muted, fontSize: 12, flexShrink: 1 },
+  });

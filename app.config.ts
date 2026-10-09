@@ -13,6 +13,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       ['expo-dev-client', { addGeneratedScheme: !standaloneTest }],
       ['expo-notifications', { color: '#9BF2CD', defaultChannel: 'pill-tracker-reminder-tests' }],
       'expo-system-ui',
+      '@react-native-community/datetimepicker',
     ],
     android: {
       ...config.android,

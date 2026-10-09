@@ -4,14 +4,14 @@ An offline Android app for one daily pill-taking confirmation, a calendar of pas
 
 ## Project status
 
-Preparation and the minimal Expo SDK 57 / TypeScript scaffold are complete. Code checks pass locally and on GitHub. On 2026-10-09, the user confirmed that the starter screen runs on their Android phone through Expo Go. The first dark home screen and local daily confirmation flow are implemented. The user verified confirmation persistence, undo persistence, cancellation, and reopening through Expo Go on their phone. The monthly history calendar is implemented and verified by the user on their phone, including year-boundary navigation and the six-row March 2026 layout. Past-date corrections, preservation of existing records, future-date protection, and synchronization with today were verified by the user on their phone. Native reminder test controls and cloud Android build profiles are prepared. Phone delivery verification and the production daily schedule remain pending.
+Preparation and the minimal Expo SDK 57 / TypeScript scaffold are complete. Code checks pass locally and on GitHub. On 2026-10-09, the user confirmed that the starter screen runs on their Android phone through Expo Go. The first dark home screen and local daily confirmation flow are implemented. The user verified confirmation persistence, undo persistence, cancellation, and reopening through Expo Go on their phone. The monthly history calendar is implemented and verified by the user on their phone, including year-boundary navigation and the six-row March 2026 layout. Past-date corrections, preservation of existing records, future-date protection, and synchronization with today were verified by the user on their phone. Native reminder test APKs built successfully, and the user verified short delivery while visible, locked, and swiped away, plus simulated cancellation. First-launch setup, saved dark/light appearance and daily pill time, Settings, permission controls, and reminder planning are implemented. Setup phone verification and the production daily schedule are the next checkpoints.
 
 ## Agreed direction
 
 - React Native, Expo, and TypeScript.
 - Local SQLite storage; no login or cloud dependency in version 1.
 - Android physical-device development build for reminder verification.
-- Dark mode by default, with light and device-theme settings.
+- Dark preselected at first launch; dark/light appearance editable in Settings.
 - One codebase with an ad-free personal build and a future free public build with ads.
 - Private GitHub repository: https://github.com/Coolbylaki/pill-tracker.
 
@@ -48,4 +48,4 @@ npm run lint:fix
 
 `check` runs ESLint, TypeScript, Prettier's formatting check, and database/date tests. Formatting is handled by Prettier; ESLint handles code correctness using Expo's configuration. `eslint-config-prettier` disables conflicting style rules. GitHub Actions runs the same checks with `npm ci` on Node.js 24.
 
-The home screen shows today's date, a confirmation button, a saved time, and a deliberate undo action. Confirmations are stored in SQLite with one record per local calendar day. A monthly calendar below the button shows recorded days, highlights today, and supports month navigation. Dates up to today can be corrected with confirmation. Historical additions do not invent a taking time. Reminders, light theme, and ads are not implemented yet.
+The home screen shows today's date, a confirmation button, a saved time, and a deliberate undo action. Confirmations are stored in SQLite with one record per local calendar day. A monthly calendar below the button shows recorded days, highlights today, and supports month navigation. Dates up to today can be corrected with confirmation. Historical additions do not invent a taking time. First-launch setup saves appearance and pill time; Settings includes optional reminder delay overrides and permission controls. The short notification test is available in test/development builds. The production daily reminder schedule and ads are not implemented yet.

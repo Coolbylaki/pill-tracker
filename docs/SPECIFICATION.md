@@ -20,10 +20,10 @@ Help a person remember whether they have taken their daily pills. Version 1 repr
 
 ## Reminders
 
-- The user chooses a daily routine time; 08:00 is the initial default and is editable.
+- First launch asks for the daily pill time, with 08:00 preselected. Reminder times are derived from that choice; no separate reminder-time setup is required.
 - There is no notification at the routine time.
 - Reminder 1 occurs one hour after the routine time if the associated day is unconfirmed.
-- Reminder 2 occurs six hours after the routine time if the associated day remains unconfirmed.
+- The critical reminder occurs six hours after the routine time if the associated day remains unconfirmed. Settings allow optional overrides for the first and critical delays; defaults are 60 and 360 minutes.
 - Example: 08:00 routine, 09:00 reminder, 14:00 final reminder.
 - At most two reminders for each routine day. No repeated nagging after the final reminder.
 - Confirmation cancels pending reminders for that day.
@@ -39,7 +39,8 @@ Use local device notifications, not server push. Exact timing and background beh
 
 ## Settings and data
 
-- Daily routine time, reminders enabled/disabled, and theme: dark, light, or device.
+- First launch guides the user through dark/light appearance, daily pill time, and notification/reminder permissions. Setup completion and choices persist; permission denial does not block recording.
+- Settings allow editing dark/light appearance, daily pill time, reminders enabled/disabled, and optional reminder delays. Dark is preselected; device-following appearance is deferred.
 - Local SQLite database with unique routine dates, confirmation timestamps, and persisted settings.
 - Use local calendar dates for the routine and timestamps with enough information to preserve history across time-zone changes.
 - Preserve data through app updates and database migrations.
@@ -70,3 +71,5 @@ Multiple medications, dosage guidance, multiple daily routines, subscriptions, c
 7. Correct a past date: only that date changes; today's status remains correct.
 8. Deny notification permission: recording still works and settings explain how to enable reminders.
 9. Change time zone, reboot, or use an evening routine crossing midnight: history and reminders refer to the intended routine date.
+
+10. Install at 17:00 with an 08:00 pill time and confirm today: no notifications for today. Tomorrow defaults to 09:00 and 14:00. Even without confirmation, passed reminder times are skipped.

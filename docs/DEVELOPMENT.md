@@ -183,3 +183,28 @@ The user tested the standalone Pill Tracker Test APK and reported:
 - Canceling all test notifications left 0 pending.
 
 The short delivery and simulated cancellation checkpoint is complete. Overnight delivery, reboot restoration, and cancellation through the actual daily confirmation button remain unverified. The production preferred-time schedule and indefinite daily scheduling still require implementation and separate validation.
+
+## First-launch setup and Settings checkpoint (2026-10-09)
+
+- Three-step first launch: choose dark/light appearance, daily pill time (08:00 preselected), and permissions. Permission requests are user initiated; setup can finish with access denied.
+- Preferences persist in a separate singleton SQLite table alongside existing pill history. Missing preferences trigger setup without clearing records; invalid saves leave saved preferences unchanged.
+- Settings from the home screen edits appearance, pill time, reminders toggle, and optional delays. Defaults are first +1 hour and critical +6 hours. Theme previews immediately; Cancel and Android Back discard drafts and restore the saved theme.
+- Native Android time picker, notification access status refreshed on return, and a link to Android Alarms & reminders. Exact-alarm grant status is not queried in this checkpoint; the instructions do not claim that access is granted.
+- Home, calendar, test panel, setup, and Settings share dark/light palettes. Setup completion is stored only after Finish setup succeeds.
+- Pure routine planning excludes passed times, suppresses confirmed days and disabled reminders, and retains the originating routine date across midnight. Planning is tested; production native scheduling is a separate checkpoint and is visibly inactive in this test version.
+- The Expo-compatible time picker adds one npm audit entry via its Expo peer dependency; the inherited tooling advisories now total 23 (7 moderate, 16 high). No additional advisory originates in the time picker itself. Automated fixes propose incompatible Expo/React Native downgrades.
+
+### Setup and Settings phone checklist
+
+Install the updated Test APK over the existing Test app to preserve its history. Since the previous version had no saved preferences, setup should appear once after this update.
+
+1. Choose Light and check that setup changes immediately. Set a pill time, navigate Back, and confirm the draft remains.
+2. Finish setup. Home and calendar use the chosen appearance and show the chosen pill time. Existing records remain present.
+3. Reopen the app: setup does not repeat, and the theme/time persist.
+4. Open Settings, change theme/time, then Cancel or press Android Back: saved values remain. Repeat and Save: changes persist after reopening.
+5. Try optional delays and Restore defaults. Invalid or reversed delays should block saving. Evening times display next-day reminder previews.
+6. Permission controls should open Android settings. On return, notification status refreshes. Denied permissions must not block setup or pill recording.
+
+Daily reminders are not scheduled by this checkpoint. The existing short reminder test remains available; do not treat its independent delivery controls as the production schedule.
+
+Validation: ESLint, strict TypeScript, Prettier, all 21 automated tests, all 21 Expo Doctor checks, and the Android bundle export passed. Physical-phone setup verification remains pending.

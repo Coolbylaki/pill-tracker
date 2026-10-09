@@ -1,3 +1,4 @@
+import { useTheme, type Palette } from '../theme';
 import { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -28,6 +29,8 @@ export function MonthCalendar({
   editingDisabled,
   onSelectDate,
 }: Props) {
+  const colors = useTheme();
+  const styles = makeStyles(colors);
   const [selectedMonth, setSelectedMonth] = useState<Date | null>(null);
   const month = useMemo(() => selectedMonth ?? monthStart(today), [selectedMonth, today]);
   const [attempt, setAttempt] = useState(0);
@@ -98,7 +101,7 @@ export function MonthCalendar({
 
       {!currentResult ? (
         <View style={styles.message}>
-          <ActivityIndicator color="#9BF2CD" />
+          <ActivityIndicator color={colors.accent} />
           <Text style={styles.muted}>Loading your history…</Text>
         </View>
       ) : currentResult.failed ? (
@@ -198,80 +201,81 @@ export function MonthCalendar({
   );
 }
 
-const styles = StyleSheet.create({
-  card: {
-    backgroundColor: '#17221F',
-    borderColor: '#2B3B34',
-    borderWidth: 1,
-    borderRadius: 28,
-    padding: 18,
-  },
-  eyebrow: {
-    color: '#A5B3AD',
-    fontSize: 11,
-    fontWeight: '700',
-    letterSpacing: 2,
-    marginBottom: 12,
-  },
-  heading: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: 8,
-    flexWrap: 'wrap',
-    marginBottom: 14,
-  },
-  month: { color: '#F1F5F2', fontSize: 20, fontWeight: '600', flexShrink: 1 },
-  navigation: { flexDirection: 'row', gap: 6 },
-  arrow: {
-    width: 48,
-    minHeight: 48,
-    borderRadius: 16,
-    backgroundColor: '#26342E',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  arrowText: { color: '#9BF2CD', fontSize: 30 },
-  pressed: { opacity: 0.7 },
-  returnButton: {
-    minHeight: 48,
-    justifyContent: 'center',
-    alignSelf: 'flex-start',
-    paddingHorizontal: 4,
-    marginBottom: 6,
-  },
-  returnText: { color: '#9BF2CD', fontSize: 13, fontWeight: '600' },
-  row: { flexDirection: 'row' },
-  weekdayCell: { flex: 1, alignItems: 'center', paddingBottom: 8 },
-  weekday: { color: '#A5B3AD', fontSize: 11, fontWeight: '600' },
-  dayCell: { flex: 1, padding: 2 },
-  day: {
-    minHeight: 54,
-    paddingVertical: 6,
-    borderRadius: 13,
-    borderWidth: 1,
-    borderColor: 'transparent',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  takenDay: { backgroundColor: '#234235' },
-  todayDay: { borderColor: '#9BF2CD' },
-  dayNumber: { color: '#D4DED8', fontSize: 13, fontWeight: '500' },
-  futureNumber: { color: '#75877D' },
-  takenNumber: { color: '#9BF2CD', fontWeight: '700' },
-  marker: { color: '#A5B3AD', fontSize: 12, minHeight: 18 },
-  takenMarker: { color: '#9BF2CD' },
-  editHint: { color: '#A5B3AD', fontSize: 12, textAlign: 'center', marginTop: 10 },
-  summary: { color: '#D4DED8', fontSize: 13, marginTop: 18, textAlign: 'center' },
-  legend: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 12,
-    justifyContent: 'center',
-    marginTop: 14,
-  },
-  legendItem: { color: '#A5B3AD', fontSize: 11 },
-  tick: { color: '#9BF2CD' },
-  message: { minHeight: 180, justifyContent: 'center', alignItems: 'center', gap: 14 },
-  muted: { color: '#A5B3AD', fontSize: 13, textAlign: 'center' },
-});
+const makeStyles = (colors: Palette) =>
+  StyleSheet.create({
+    card: {
+      backgroundColor: colors.surface,
+      borderColor: colors.border,
+      borderWidth: 1,
+      borderRadius: 28,
+      padding: 18,
+    },
+    eyebrow: {
+      color: colors.muted,
+      fontSize: 11,
+      fontWeight: '700',
+      letterSpacing: 2,
+      marginBottom: 12,
+    },
+    heading: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      gap: 8,
+      flexWrap: 'wrap',
+      marginBottom: 14,
+    },
+    month: { color: colors.text, fontSize: 20, fontWeight: '600', flexShrink: 1 },
+    navigation: { flexDirection: 'row', gap: 6 },
+    arrow: {
+      width: 48,
+      minHeight: 48,
+      borderRadius: 16,
+      backgroundColor: colors.soft,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    arrowText: { color: colors.accent, fontSize: 30 },
+    pressed: { opacity: 0.7 },
+    returnButton: {
+      minHeight: 48,
+      justifyContent: 'center',
+      alignSelf: 'flex-start',
+      paddingHorizontal: 4,
+      marginBottom: 6,
+    },
+    returnText: { color: colors.accent, fontSize: 13, fontWeight: '600' },
+    row: { flexDirection: 'row' },
+    weekdayCell: { flex: 1, alignItems: 'center', paddingBottom: 8 },
+    weekday: { color: colors.muted, fontSize: 11, fontWeight: '600' },
+    dayCell: { flex: 1, padding: 2 },
+    day: {
+      minHeight: 54,
+      paddingVertical: 6,
+      borderRadius: 13,
+      borderWidth: 1,
+      borderColor: 'transparent',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    takenDay: { backgroundColor: colors.taken },
+    todayDay: { borderColor: colors.accent },
+    dayNumber: { color: colors.day, fontSize: 13, fontWeight: '500' },
+    futureNumber: { color: colors.future },
+    takenNumber: { color: colors.accent, fontWeight: '700' },
+    marker: { color: colors.muted, fontSize: 12, minHeight: 18 },
+    takenMarker: { color: colors.accent },
+    editHint: { color: colors.muted, fontSize: 12, textAlign: 'center', marginTop: 10 },
+    summary: { color: colors.day, fontSize: 13, marginTop: 18, textAlign: 'center' },
+    legend: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      gap: 12,
+      justifyContent: 'center',
+      marginTop: 14,
+    },
+    legendItem: { color: colors.muted, fontSize: 11 },
+    tick: { color: colors.accent },
+    message: { minHeight: 180, justifyContent: 'center', alignItems: 'center', gap: 14 },
+    muted: { color: colors.muted, fontSize: 13, textAlign: 'center' },
+  });
