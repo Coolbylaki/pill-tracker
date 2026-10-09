@@ -1,3 +1,4 @@
+import { openDailyAlarmSettings } from './dailyReminders';
 import { isRunningInExpoGo } from 'expo';
 import * as Notifications from 'expo-notifications';
 import { Linking, Platform } from 'react-native';
@@ -20,6 +21,7 @@ export async function notificationAccess(request = false): Promise<string> {
 }
 
 export async function openAlarmAccess(): Promise<void> {
+  if (await openDailyAlarmSettings()) return;
   try {
     await Linking.sendIntent('android.settings.REQUEST_SCHEDULE_EXACT_ALARM');
   } catch {

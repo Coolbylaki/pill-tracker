@@ -14,6 +14,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       ['expo-notifications', { color: '#9BF2CD', defaultChannel: 'pill-tracker-reminder-tests' }],
       'expo-system-ui',
       '@react-native-community/datetimepicker',
+      './plugins/with-reminder-desugaring.cjs',
     ],
     android: {
       ...config.android,

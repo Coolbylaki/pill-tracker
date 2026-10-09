@@ -1,0 +1,32 @@
+plugins {
+  id 'com.android.library'
+  id 'expo-module-gradle-plugin'
+}
+
+group = 'expo.modules.pillreminders'
+version = '0.1.0'
+
+android {
+  namespace "expo.modules.pillreminders"
+  defaultConfig {
+    versionCode 1
+    versionName "0.1.0"
+  }
+  compileOptions {
+    coreLibraryDesugaringEnabled true
+  }
+}
+
+dependencies {
+  coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
+  testImplementation 'junit:junit:4.13.2'
+}
+
+tasks.withType(Test).configureEach {
+  testLogging {
+    events 'passed', 'skipped', 'failed'
+  }
+  afterSuite { descriptor, result ->
+    if (!descriptor.parent) println("Pill reminder native tests: ${result.testCount} run, ${result.failedTestCount} failed")
+  }
+}

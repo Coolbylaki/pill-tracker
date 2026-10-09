@@ -1,3 +1,5 @@
+import { DailyReminderInfo } from '../components/DailyReminderInfo';
+import type { DailyReminderStatus } from '../reminders/dailyReminders';
 import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
@@ -34,6 +36,8 @@ interface Props {
   onPreviewTheme: (theme: ThemeMode) => void;
   onSave: (preferences: Preferences) => Promise<void>;
   onCancel: () => void;
+  reminderStatus: DailyReminderStatus | null;
+  onRefreshReminders: () => Promise<void>;
 }
 
 export function PreferencesScreen({
@@ -42,6 +46,8 @@ export function PreferencesScreen({
   onPreviewTheme,
   onSave,
   onCancel,
+  reminderStatus,
+  onRefreshReminders,
 }: Props) {
   const colors = useTheme();
   const styles = makeStyles(colors);
@@ -269,7 +275,9 @@ export function PreferencesScreen({
           <Text style={styles.copy}>
             Confirming today cancels today’s reminders. Times that have already passed are skipped.
           </Text>
-          <Text style={styles.notice}>Daily reminders aren’t active in this test version yet.</Text>
+          <Text style={styles.notice}>
+            Save your choices to apply this plan. Confirmed days and passed times are skipped.
+          </Text>
         </View>
       )}
       {(!onboarding || step === 2) && (
@@ -278,13 +286,23 @@ export function PreferencesScreen({
           <Text accessibilityLiveRegion="polite" style={styles.copy}>
             {permission}
           </Text>
+          {reminderStatus?.supported && (
+            <Text style={styles.copy}>
+              {reminderStatus.exactAllowed
+                ? 'Alarms & reminders allowed'
+                : 'Alarms & reminders access is off'}
+            </Text>
+          )}
           {nativePermissionsAvailable && (
             <>
               {
                 <ActionButton
                   label={'Allow notifications'}
                   onPress={() => {
-                    void run(async () => setPermission(await notificationAccess(true)));
+                    void run(async () => {
+                      setPermission(await notificationAccess(true));
+                      await onRefreshReminders();
+                    });
                   }}
                   primary={false}
                   disabled={busy}
@@ -321,6 +339,14 @@ export function PreferencesScreen({
             works.
           </Text>
         </View>
+      )}
+      {!onboarding && (
+        <DailyReminderInfo
+          status={reminderStatus}
+          onRetry={() => {
+            void onRefreshReminders().catch(() => undefined);
+          }}
+        />
       )}
       {onboarding && step < 2 ? (
         <ActionButton

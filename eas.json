@@ -8,7 +8,8 @@
       "developmentClient": true,
       "distribution": "internal",
       "android": {
-        "buildType": "apk"
+        "buildType": "apk",
+        "gradleCommand": ":pill-reminders:testDebugUnitTest :app:assembleDebug"
       },
       "env": {
         "APP_VARIANT": "development",
@@ -19,7 +20,8 @@
       "developmentClient": false,
       "distribution": "internal",
       "android": {
-        "buildType": "apk"
+        "buildType": "apk",
+        "gradleCommand": ":pill-reminders:testReleaseUnitTest :app:assembleRelease"
       },
       "env": {
         "APP_VARIANT": "reminder-test",

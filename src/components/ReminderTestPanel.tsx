@@ -106,7 +106,8 @@ export function ReminderTestPanel({ disabled }: { disabled: boolean }) {
           <View style={styles.content}>
             <Text style={styles.copy}>
               Delivery tests run even if today is already confirmed. Simulating confirmation cancels
-              today’s tests without changing pill history.
+              today’s tests without changing pill history. These delivery tests ignore the Settings
+              reminders toggle; the daily schedule follows it.
             </Text>
             <Text style={styles.copy}>
               For accurate timing, allow this app under Android Settings → Special app access →

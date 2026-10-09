@@ -223,3 +223,14 @@ Install over the matching existing app to preserve its database. Existing users 
 The user installed the updated standalone Test APK and reported that setup works, existing history remains, saved choices survive reopening, Cancel discards changes, and Save persists changes. The setup and Settings phone checkpoint is complete.
 
 The 30s/90s delivery-test controls intentionally ignore the reminders toggle; the toggle governs the daily routine schedule. This distinction was explained to the user before starting production reminder integration.
+
+## Daily reminder integration (2026-10-09)
+
+- Local Expo Android module `pill-reminders` checks the existing SQLite preferences and pill records before notifying, and renews dated alarms without opening React Native. No login or network service is introduced.
+- First +1 hour and critical +6 hours follow saved pill time by default. Optional delay overrides and the reminders toggle are applied on Save. Confirmation, undo, date corrections, startup, foreground, local-day rollover, boot, app replacement, and clock/time-zone/access changes reconcile future alarms.
+- A native delivery ledger enforces at most two reminder slots for each routine day even after settings changes or undo. Passed times are not newly scheduled; original routine dates survive midnight. Clock/settings changes invalidate stale intents.
+- Native exact-alarm access is queried and Settings opens the permission page for this app. Inexact scheduling is used without access. Dated next-reminder status is shown on Home and in Settings.
+- Notification taps identify the associated routine day for review and an explicit confirmation. They never silently write pill records.
+- Daily notifications are separate from the independent 30s/90s tests, which remain explicitly labeled as ignoring the Settings toggle.
+- Twenty-two JavaScript tests and all Expo Doctor checks passed during integration. Seven native Kotlin planner tests cover late setup, confirm/undo, disabled reminders, midnight/year boundaries, stale/duplicate delivery, DST/time zones, and consecutive-day renewal. Both EAS profiles run these native tests as required build tasks; their results remain pending until the builds finish.
+- Detailed accelerated, overnight, and reboot phone checks and operational limits are documented in DAILY_REMINDER_TESTING.md. Real-schedule physical-phone results remain pending.

@@ -23,7 +23,7 @@ Each milestone ends with a reviewable result, appropriate verification, a descri
 - Monthly calendar display and navigation are implemented and phone-verified on 2026-10-09. Deliberate date corrections were also phone-verified on 2026-10-09.
 
 - Reminder test APKs built successfully; short delivery while visible, locked, and swiped away, plus simulated cancellation, passed reported phone checks. Overnight delivery, reboot restoration, and indefinite daily scheduling remain pending.
-- First-launch setup, persisted dark/light and pill-time preferences, Settings, permission controls, and reminder planning are implemented. Physical-phone setup verification and production schedule integration are next.
+- First-launch setup, persisted dark/light and pill-time preferences, Settings, permission controls, and reminder planning are implemented. Setup was phone-verified. Native daily-schedule integration is implemented; cloud native tests and real-schedule phone verification are next.
 
 ## Later options
 
