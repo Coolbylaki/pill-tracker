@@ -52,7 +52,7 @@ Do not use Android's **Force stop**, uninstall, or data clearing as a normal app
 
 ## What remains
 
-Automated tests cover planning, date-scoped cancellation, rearming without duplicate accumulation, and cleanup after scheduling failure. Phone delivery, exact timing, idle behavior, and reboot restoration remain unverified until the user reports results.
+Automated tests cover planning, date-scoped cancellation, rearming without duplicate accumulation, and cleanup after scheduling failure. The user reported successful 30s/90s delivery with the phone on, locked, and after swiping the app away from Recents; simulated cancellation, date-scoped pending counts, and cancel-all also passed. These short tests do not establish long-term idle behavior, overnight delivery, reboot restoration, or cancellation through the actual daily confirmation button; those checks remain pending.
 
 The installed Expo Android scheduling code stores requests natively and restores them at boot. It falls back to inexact alarms if exact-alarm access is absent. Ordinary repeating Expo notifications do not independently query our SQLite confirmation history before background delivery. The production design still needs to handle indefinite daily scheduling and skipping completed routine days without requiring a daily app launch; these two-day tests do not prove that behavior.
 

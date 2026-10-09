@@ -159,7 +159,7 @@ Prepared on 2026-10-09:
 - Debug/test-only panel schedules 30s/90s pairs now or tomorrow, lists pending counts, simulates today's cancellation, and cancels all owned tests. No remote push tokens or messaging services are used.
 - Actual daily confirmation cancels matching test reminders after the pill record is saved; cancellation failure does not misreport the record as unsaved.
 - Sixteen automated tests pass; Expo Doctor passed all 21 checks after final plugin configuration. Android bundle generation passed. The inherited npm audit remains 22 affected dependency entries after removing EAS CLI from app dependencies.
-- Detailed phone checks and architectural limitations are in REMINDER_TESTING.md. Native delivery and production scheduling are not yet verified.
+- Detailed phone checks and architectural limitations are in REMINDER_TESTING.md. Short reminder delivery and cancellation passed the reported phone checks below. Production scheduling remains unverified.
 
 ### Android cloud-build results (2026-10-09)
 
@@ -169,4 +169,17 @@ Both APKs completed successfully from commit `63aad66e8408a9b2e31d7ec040ca76b244
 - [Standalone reminder-test APK](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/7c8fee0e-d9f7-4257-b6ca-94118f2249cf): server-independent test app, package `com.coolbylaki.pilltracker.test`.
 - GitHub Actions passed for the source commit. The initial cloud submission returned a temporary HTTP 503; the retry succeeded without source changes.
 
-Cloud compilation and APK generation are verified. Installation and notification delivery on the physical phone remain pending; follow REMINDER_TESTING.md. These builds do not enable the production one-hour/six-hour schedule.
+Cloud compilation and APK generation are verified. Installation and short notification delivery on the physical phone passed the reported checks below; follow REMINDER_TESTING.md for the remaining overnight and reboot checks. These builds do not enable the production one-hour/six-hour schedule.
+
+### Reported reminder phone results (2026-10-09)
+
+The user tested the standalone Pill Tracker Test APK and reported:
+
+- Both 30-second and 90-second notifications arrived with the phone on.
+- Both notifications arrived with the phone locked, including after swiping the app away from Recents.
+- Both notifications could remain visible together.
+- Simulating today's confirmation prevented both of today's notifications; the user waited through the 90-second test window.
+- With today's and tomorrow's pairs scheduled, simulating today's confirmation canceled 2 notifications and left 2 pending. This matches the expected date-scoped cancellation; the count alone does not identify the remaining dates or prove next-day delivery.
+- Canceling all test notifications left 0 pending.
+
+The short delivery and simulated cancellation checkpoint is complete. Overnight delivery, reboot restoration, and cancellation through the actual daily confirmation button remain unverified. The production preferred-time schedule and indefinite daily scheduling still require implementation and separate validation.
