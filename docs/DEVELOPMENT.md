@@ -376,3 +376,9 @@ The user reported the widget is still a tiny bit shorter and supplied a full 945
 ### Galaxy A16 calibration APK result (2026-10-10)
 
 The [height-calibrated APK](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/a7547145-e184-4037-8fd1-68b3c8bd79fe) completed successfully from `a961033`, version code 6, with the existing package/signing key. Android compilation/resources and packaging passed; all 19 native tests passed with zero failures. All 27 JavaScript tests, lint, TypeScript, formatting and GitHub checks passed. Install over the current personal app and open once to refresh the widget. The final outline match awaits the user's report; accepted widget/navigation behavior does not require repeating the reminder trial.
+
+### Personal wording and About checkpoint (2026-10-10)
+
+Source commit `a4f0ff4` adds a muted About footer in Settings: version/build, offline/on-device records, and widget availability. It is absent from onboarding and includes no widget instructions. The wording review simplifies delay/preview/permission descriptions, uses Taken for recorded Home status, clarifies Undo as removing a record, and replaces notification wording about an unconfirmed routine with pills not yet recorded. The current widget appearance is accepted and unchanged.
+
+All 27 JavaScript tests, lint, TypeScript, formatting and diff checks passed. The personal version code is 7 for the next compatible APK. Automatic approval review rejected the cloud-build command because it uploads private source to Expo/EAS and requires explicit authorization for that destination. No build was started; native checks and the version-7 APK remain pending that authorization. No local modern Java/Android build toolchain is configured. Existing installed version 6 remains the accepted personal app.

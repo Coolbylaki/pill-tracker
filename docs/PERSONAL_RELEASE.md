@@ -53,3 +53,7 @@ Completed on October 10, 2026, from `9745518`, version code 5, using the existin
 [Install the final widget-height adjustment](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/a7547145-e184-4037-8fd1-68b3c8bd79fe).
 
 Completed on October 10, 2026, from `a961033`, version code 6, with the existing package/signing key. All 19 native tests, 27 JavaScript tests and GitHub checks passed. The user's full Galaxy A16 screenshot showed the panel roughly 2px shorter than the reference. Visible/minimum height is now 52dp, one dp taller, with the same text sizing and spacing. Install over the current app and open once to refresh the widget; the final visual alignment awaits the user's report.
+
+## Latest source update: wording and Settings About
+
+Source commit `a4f0ff4` completes the requested wording review and small About footer. All 27 JavaScript tests, lint, TypeScript and formatting passed. The widget's version-6 appearance is accepted as-is. Version code 7 is prepared for an in-place APK update, but no APK is available yet: automatic approval review blocked the Expo/EAS cloud build until the user explicitly authorizes uploading this private source to that service. Native build checks remain pending. The installed version-6 app remains usable.
