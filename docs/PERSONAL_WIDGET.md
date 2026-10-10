@@ -4,7 +4,7 @@ The user approved the compact two-line design on October 10, 2026, based on thei
 
 ## Appearance and behavior
 
-The widget defaults to two columns by one row, with a translucent dark teal rounded background (40% opacity), centered white text and mint completed-state text. Its visible panel is 44dp high, centered inside the launcher cell, with 15sp/12sp text; it does not stretch vertically to fill a tall row. It can be resized; actual cell dimensions and outer padding depend on the launcher. It uses native Android text rather than a generated image.
+The widget defaults to two columns by one row, with a translucent dark teal rounded background (40% opacity), centered white text and mint completed-state text. Its visible panel is 51dp high, centered inside the launcher cell, with 14sp/12sp text; it does not stretch vertically to fill a tall row. It can be resized; actual cell dimensions and outer padding depend on the launcher. It uses native Android text rather than a generated image.
 
 | State                                        | First line     | Second line        |
 | -------------------------------------------- | -------------- | ------------------ |
@@ -27,7 +27,7 @@ Successful record/settings writes and daily-reminder reconciliation refresh inst
 
 Android can delay time-based widget refreshes, particularly while idle; the widget is not a live countdown. Confirmation/Undo changes refresh as part of the saved write. It does not require JavaScript or a development server to run in the background. [Android update guidance](https://developer.android.com/develop/ui/views/appwidgets/advanced).
 
-This native change requires a new APK. The personal profile keeps its existing package/signing identity and raises version code to 4 for the size/transparency/navigation refinement. Install over the existing personal app without uninstalling or clearing data, then open once. Long-press an empty area of the Android home screen, choose Widgets, find Pill Tracker and drag its widget onto the screen. Launcher menu wording may differ.
+This native change requires a new APK. The personal profile keeps its existing package/signing identity and raises version code to 5 for the measured padding adjustment. Install over the existing personal app without uninstalling or clearing data, then open once. Long-press an empty area of the Android home screen, choose Widgets, find Pill Tracker and drag its widget onto the screen. Launcher menu wording may differ.
 
 Phone review for the refinement: check that the compact translucent panel fits, tapping opens Home without a review card both before and after confirmation, and normal confirmation/Undo still refreshes the widget. Use existing history/settings; do not erase data or delay taking a pill to test the widget. The user has already reported the first widget's taken state, Undo/reminder text and app opening passed; they requested the simpler Home destination and smaller translucent style. Calendar correction/streak and time-dependent launcher updates were not separately reported.
 
