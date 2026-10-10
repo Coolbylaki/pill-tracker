@@ -27,7 +27,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
         monochromeImage: './assets/pill-icon-foreground.png',
         backgroundColor: '#10231F',
       },
-      versionCode: personal ? 7 : (config.android?.versionCode ?? 1),
+      versionCode: personal ? 8 : (config.android?.versionCode ?? 1),
       package: standalone ? 'com.coolbylaki.pilltracker.test' : 'com.coolbylaki.pilltracker.dev',
       permissions: [
         ...(config.android?.permissions ?? []),

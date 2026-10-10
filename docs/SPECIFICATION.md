@@ -77,3 +77,5 @@ Multiple medications, dosage guidance, multiple daily routines, subscriptions, c
 ### Personal Settings About section
 
 A small, muted About footer in Settings shows Pill Tracker's version/build, states that the app works offline and records stay on this device, and notes that a home-screen widget is available. It is not part of first-launch setup. No widget instructions or additional help screen are included. The user accepted the current widget appearance on October 10, 2026.
+
+Personal-release refinement (October 10, 2026): the user chose release version 1.1.0, displayed as Pill Tracker · v1.1.0 in About. Android's increasing build code is hidden from this footer. The widget-availability note is moved from About to the bottom of Home, beneath the existing on-device-record note. This supersedes the earlier About-content description. No widget instructions are added.

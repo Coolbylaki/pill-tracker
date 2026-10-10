@@ -32,7 +32,6 @@ import { reminderTimeLabel, routineTimeLabel } from '../reminders/routinePlan';
 import { useTheme, type Palette } from '../theme';
 
 const appVersion = Constants.expoConfig?.version;
-const buildVersion = Constants.expoConfig?.android?.versionCode;
 
 interface Props {
   initial: Preferences;
@@ -390,12 +389,8 @@ export function PreferencesScreen({
           <Text accessibilityRole="header" style={styles.aboutHeading}>
             About
           </Text>
-          <Text style={styles.copy}>
-            Pill Tracker{appVersion ? ` · Version ${appVersion}` : ''}
-            {appVersion && buildVersion ? ` (${buildVersion})` : ''}
-          </Text>
+          <Text style={styles.copy}>Pill Tracker{appVersion ? ` · v${appVersion}` : ''}</Text>
           <Text style={styles.copy}>Works offline. Your records stay on this device.</Text>
-          <Text style={styles.copy}>Home-screen widget available.</Text>
         </View>
       )}
     </ScrollView>

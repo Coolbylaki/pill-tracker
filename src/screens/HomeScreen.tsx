@@ -355,8 +355,11 @@ export function HomeScreen({
       {showReminderTests && <ReminderTestPanel disabled={loading || busy || !!error} />}
 
       <View style={styles.footer}>
-        <View style={styles.dot} />
-        <Text style={styles.footerText}>Your record stays on this device.</Text>
+        <View style={styles.footerRow}>
+          <View style={styles.dot} />
+          <Text style={styles.footerText}>Your record stays on this device.</Text>
+        </View>
+        <Text style={styles.footerText}>Home-screen widget available.</Text>
       </View>
     </ScrollView>
   );
@@ -464,11 +467,15 @@ const makeStyles = (colors: Palette) =>
     },
     retryText: { color: colors.accent, fontSize: 16, fontWeight: '600' },
     footer: {
+      alignItems: 'center',
+      gap: 8,
+      paddingBottom: 12,
+    },
+    footerRow: {
       flexDirection: 'row',
       gap: 8,
       alignItems: 'center',
       justifyContent: 'center',
-      paddingBottom: 12,
     },
     dot: { width: 5, height: 5, borderRadius: 3, backgroundColor: colors.accent },
     footerText: { color: colors.muted, fontSize: 12, flexShrink: 1 },
