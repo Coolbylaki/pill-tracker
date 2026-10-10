@@ -162,7 +162,7 @@ object ReminderEngine {
     val scheme = if (context.packageName.endsWith(".test")) "pill-tracker-test" else "pill-tracker-dev"
     val launch = context.packageManager.getLaunchIntentForPackage(context.packageName) ?: error("App launch activity unavailable")
     launch.action = Intent.ACTION_VIEW
-    launch.data = Uri.parse("$scheme://routine/${reminder.routineDate}")
+    launch.data = Uri.parse("$scheme://home")
     launch.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
     val content = PendingIntent.getActivity(context, 8200 + reminder.sequence, launch, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
     val date = LocalDate.parse(reminder.routineDate).format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).withLocale(Locale.getDefault()))

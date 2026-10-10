@@ -18,7 +18,10 @@ test('personal APK upgrades the Test app without changing its storage or notific
     assert.equal(personal.android.package, installed.android.package);
     assert.equal(personal.scheme, installed.scheme);
     assert.ok(personal.android.versionCode > installed.android.versionCode);
-    assert.ok(personal.android.versionCode > 2, 'widget APK must upgrade the first personal APK');
+    assert.ok(
+      personal.android.versionCode > 3,
+      'widget refinement must upgrade the first widget APK',
+    );
     assert.equal(personal.extra.personalBuild, true);
     assert.equal(personal.extra.reminderTests, false);
     assert.equal(profiles.build.personal.developmentClient, false);

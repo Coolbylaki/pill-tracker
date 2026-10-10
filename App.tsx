@@ -4,7 +4,7 @@ import {
   hasDailyReminders,
   type DailyReminderStatus,
 } from './src/reminders/dailyReminders';
-import { reminderRoutineFromUrl } from './src/reminders/notificationRoute';
+import { reminderOpensHome } from './src/reminders/notificationRoute';
 import { localDateKey } from './src/utils/dates';
 import { StatusBar } from 'expo-status-bar';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -38,7 +38,6 @@ export default function App() {
   const visibleTheme = settingsOpen || !preferences ? theme : preferences.theme;
   const colors = paletteFor(visibleTheme);
   const [reminderStatus, setReminderStatus] = useState<DailyReminderStatus | null>(null);
-  const [requestedRoutine, setRequestedRoutine] = useState<string | null>(null);
   const scheduleRequest = useRef(0);
   const syncReminders = useCallback(async () => {
     const request = ++scheduleRequest.current;
@@ -85,11 +84,7 @@ export default function App() {
 
   useEffect(() => {
     const handleUrl = (url: string | null) => {
-      const date = reminderRoutineFromUrl(url);
-      if (date) {
-        setRequestedRoutine(date);
-        setSettingsOpen(false);
-      }
+      if (reminderOpensHome(url)) setSettingsOpen(false);
     };
     void Linking.getInitialURL()
       .then(handleUrl)
@@ -187,8 +182,6 @@ export default function App() {
                 preferences={preferences}
                 reminderStatus={reminderStatus}
                 onRecordsChanged={syncReminders}
-                requestedRoutine={requestedRoutine}
-                onDismissRoutine={() => setRequestedRoutine(null)}
                 onOpenSettings={() => {
                   setTheme(preferences.theme);
                   setSettingsOpen(true);

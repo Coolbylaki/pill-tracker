@@ -93,7 +93,7 @@ object PillWidget {
         if (launch != null) {
           val scheme = if (context.packageName.endsWith(".test")) "pill-tracker-test" else "pill-tracker-dev"
           launch.action = Intent.ACTION_VIEW
-          launch.data = Uri.parse(if (state.date == null) "$scheme://home" else "$scheme://routine/${state.date}")
+          launch.data = Uri.parse("$scheme://home")
           launch.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
           views.setOnClickPendingIntent(R.id.widget_root, PendingIntent.getActivity(context, 8400 + id, launch,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE))

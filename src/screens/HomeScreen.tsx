@@ -28,8 +28,6 @@ interface Props {
   onOpenSettings: () => void;
   reminderStatus: DailyReminderStatus | null;
   onRecordsChanged: () => Promise<void>;
-  requestedRoutine: string | null;
-  onDismissRoutine: () => void;
 }
 
 export function HomeScreen({
@@ -38,8 +36,6 @@ export function HomeScreen({
   onOpenSettings,
   reminderStatus,
   onRecordsChanged,
-  requestedRoutine,
-  onDismissRoutine,
 }: Props) {
   const colors = useTheme();
   const styles = makeStyles(colors);
@@ -231,27 +227,6 @@ export function HomeScreen({
     );
   }
 
-  async function reviewReminder() {
-    if (!requestedRoutine || loading || busyRef.current || busy || error || dialogRef.current)
-      return;
-    const date = requestedRoutine;
-    busyRef.current = true;
-    setBusy(true);
-    try {
-      const saved = await repository.getRecord(date);
-      busyRef.current = false;
-      setBusy(false);
-      onDismissRoutine();
-      if (saved) Alert.alert('Already recorded', 'This routine day is already confirmed.');
-      else openDateCorrection(date, null);
-    } catch {
-      Alert.alert('Couldn’t open the routine', 'Please try again.');
-    } finally {
-      busyRef.current = false;
-      setBusy(false);
-    }
-  }
-
   const disabled = loading || busy || !!error || !!record;
 
   return (
@@ -272,37 +247,6 @@ export function HomeScreen({
         <Text style={styles.subtitle}>One daily check-in. One less thing to remember.</Text>
         <Text style={styles.subtitle}>Daily pill time: {routineTimeLabel(preferences)}</Text>
       </View>
-
-      {requestedRoutine && (
-        <View style={styles.card}>
-          <Text style={styles.date}>
-            Reminder for{' '}
-            {dateFromKey(requestedRoutine).toLocaleDateString(undefined, {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-          </Text>
-          <Text style={styles.statusDescription}>
-            Check this day before recording. Opening a reminder does not confirm your pills.
-          </Text>
-          {requestedRoutine <= localDateKey(new Date()) && (
-            <Pressable
-              accessibilityRole="button"
-              disabled={loading || busy || !!error}
-              onPress={() => {
-                void reviewReminder();
-              }}
-              style={styles.retry}
-            >
-              <Text style={styles.retryText}>Review this routine</Text>
-            </Pressable>
-          )}
-          <Pressable accessibilityRole="button" onPress={onDismissRoutine} style={styles.undo}>
-            <Text style={styles.undoText}>Dismiss</Text>
-          </Pressable>
-        </View>
-      )}
 
       <View style={styles.card}>
         <View style={styles.cardTop}>

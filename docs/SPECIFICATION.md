@@ -30,9 +30,9 @@ Help a person remember whether they have taken their daily pills. Version 1 repr
 - Reconcile schedules after undo, settings changes, restart, and time-zone or clock changes.
 - Passed reminders are not replayed as a burst when settings change or the app opens.
 - Keep reminders operating across consecutive days without requiring the app to be opened daily.
-- If an offset crosses midnight, associate the reminder with its original routine date; recording must clearly identify that date.
+- If an offset crosses midnight, associate the reminder with its original routine date and identify it in the notification text. Past-date recording remains a deliberate calendar correction for the selected date.
 - Default notification text should reveal no medication names.
-- Add a notification action for recording with confirmation if practical; opening the confirmation screen is an acceptable first implementation.
+- Notification and widget taps open Home without recording or showing an extra routine-review card (user preference, October 10, 2026). The normal confirmation button and calendar corrections retain their explicit confirmation dialogs.
 - Provide a reminders toggle and explain notification permission status in settings.
 
 Use local device notifications, not server push. Exact timing and background behavior must be verified on a physical Android device. Investigate whether Expo APIs alone can support multi-day scheduling and conditional delivery; add native Android integration if required. Do not rely solely on JavaScript background timers or blindly repeating reminders that ignore completion state.
