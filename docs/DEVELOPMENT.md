@@ -334,3 +334,9 @@ The APK includes the approved icon, visible Pill Tracker name, no delivery-test 
 After receiving the personal APK, the user reported that everything seems fine and that they can use it personally. The personal-use checkpoint is accepted based on that overall phone report. Individual history/preferences/icon/panel checks were not separately detailed, and no update issue was reported. There is no outstanding required waiting period.
 
 Next work is optional for the personal app: backup/export and restore, requested usability improvements, or fixes if an issue appears. A public version is a separate future path: separate build identity, backup/data behavior, ads and consent/privacy preparation, current Google Play requirements and store materials, release testing, and explicit publication approval. Do not begin ads or public publishing merely because the personal app is accepted.
+
+### Personal widget discussion and account setup (2026-10-10)
+
+The user chose to skip backup and cloud sync for now and requested finishing personal improvements before public-app work. The current discussion is a small home-screen widget, using their Smoke Free widget screenshot as a reference for compact size and two-line text density. Proposed states show the pill time, an outstanding-pill prompt with the next reminder time, or a recorded-day streak. Tapping opens the app for explicit review/confirmation; it does not silently record a dose. These are design proposals, not an implemented or approved widget.
+
+The user reported that they are currently setting up Google Play Console and the Google advertising account discussed above (AdMob). Neither account is yet confirmed ready, and no publisher IDs or credentials have been supplied. Account setup runs alongside personal-widget discussion; public build and ads integration remain deferred. The repository stays private.
