@@ -31,6 +31,10 @@ This native change requires a new APK. The personal profile keeps its existing p
 
 Phone review for the refinement: check that the compact translucent panel fits, tapping opens Home without a review card both before and after confirmation, and normal confirmation/Undo still refreshes the widget. Use existing history/settings; do not erase data or delay taking a pill to test the widget. The user has already reported the first widget's taken state, Undo/reminder text and app opening passed; they requested the simpler Home destination and smaller translucent style. Calendar correction/streak and time-dependent launcher updates were not separately reported.
 
-## Build result
+## First widget build result
 
 The [personal widget APK](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/a97adaf9-9057-4770-b966-8d54e22014c9) completed successfully on October 10, 2026, from `68ebef7`. It uses version code 3 and the existing personal signing key/package. All 19 native tests passed (10 existing tests plus seven widget-state and two widget/database tests), with zero failures. The 27 JavaScript tests, lint, TypeScript, formatting and GitHub checks passed. Physical launcher layout, tapping and widget refresh remain for the user's phone review.
+
+## Latest refinement build result
+
+The [compact translucent widget APK](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/c4a5b3e4-27b5-47ed-9746-ea2e727af65f) completed successfully on October 10, 2026, from `a296afa`, version code 4, with the existing signing identity. All 19 native tests passed with zero failures, alongside 27 JavaScript tests and GitHub checks. The first widget's taken state, Undo/reminder text and opening the app passed the user's phone checks. The latest size/transparency and Home-only tap behavior await their review.
