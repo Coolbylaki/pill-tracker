@@ -57,3 +57,9 @@ Completed on October 10, 2026, from `a961033`, version code 6, with the existing
 ## Latest source update: wording and Settings About
 
 Source commit `a4f0ff4` completes the requested wording review and small About footer. All 27 JavaScript tests, lint, TypeScript and formatting passed. The widget's version-6 appearance is accepted as-is. Version code 7 is prepared for an in-place APK update, but no APK is available yet: automatic approval review blocked the Expo/EAS cloud build until the user explicitly authorizes uploading this private source to that service. Native build checks remain pending. The installed version-6 app remains usable.
+
+## Wording and About APK ready
+
+[Install the personal wording and About update](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/b278c03d-051e-49a6-8f8e-e7a79cf035de).
+
+Completed on October 10, 2026, from `ec026fd`, version code 7, with the existing personal package/signing key. The user explicitly approved the Expo/EAS source upload. All 19 native tests passed with zero failures; Android compilation and packaging succeeded. All 27 JavaScript tests, lint, TypeScript, formatting and GitHub checks passed for the implementation. Install over the current personal app without uninstalling or clearing data. Settings now has a quiet About footer and clearer reminder/permission/preview wording; Home and notification wording is also simplified. The accepted widget appearance is unchanged. Phone review of the new wording/About section remains with the user; the previously accepted reminder and widget checks do not require another full-day trial.

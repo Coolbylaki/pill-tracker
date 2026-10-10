@@ -382,3 +382,11 @@ The [height-calibrated APK](https://expo.dev/accounts/coolbylaki/projects/pill-t
 Source commit `a4f0ff4` adds a muted About footer in Settings: version/build, offline/on-device records, and widget availability. It is absent from onboarding and includes no widget instructions. The wording review simplifies delay/preview/permission descriptions, uses Taken for recorded Home status, clarifies Undo as removing a record, and replaces notification wording about an unconfirmed routine with pills not yet recorded. The current widget appearance is accepted and unchanged.
 
 All 27 JavaScript tests, lint, TypeScript, formatting and diff checks passed. The personal version code is 7 for the next compatible APK. Automatic approval review rejected the cloud-build command because it uploads private source to Expo/EAS and requires explicit authorization for that destination. No build was started; native checks and the version-7 APK remain pending that authorization. No local modern Java/Android build toolchain is configured. Existing installed version 6 remains the accepted personal app.
+
+### Personal build upload approved (2026-10-10)
+
+After the automatic approval review blocked uploading private source, the user explicitly approved using Expo/EAS for this personal APK update. Build `b278c03d-051e-49a6-8f8e-e7a79cf035de` started from source `ec026fd`, using the existing remote signing key/package and version code 7. This is an internal personal build; the repository remains private. Results follow below.
+
+### Personal wording and About APK result (2026-10-10)
+
+The [personal polish APK](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/b278c03d-051e-49a6-8f8e-e7a79cf035de) completed successfully from `ec026fd`, version code 7, using the existing signing identity. All 19 native tests passed, zero failures, and Android compilation/packaging succeeded. All 27 JavaScript tests, lint, TypeScript, formatting and GitHub checks passed for implementation commit `a4f0ff4`. The earlier upload block was resolved by the user's explicit approval, and no build work remains blocked. Installation and visual/copy review of the About section remain for the phone; accepted reminder/widget behavior does not require another day-long wait.
