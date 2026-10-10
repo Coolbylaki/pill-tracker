@@ -22,7 +22,7 @@ The built-in ImageGen tool generated the assets. Exact prompts are saved in [Bra
 
 The personal app remains offline and ad-free. No account, cloud database, ads, store submission, or public publishing is part of this checkpoint. Continued ordinary use can reveal issues, but it is not a new release gate imposed after the accepted phone checks.
 
-The first personal APK completed successfully on 2026-10-10 from source commit `37860ce`, with all 10 native Android tests passing (0 failures). Lint, TypeScript, formatting, all 27 JavaScript tests, Android Hermes export, and GitHub Actions passed. EAS reused the existing package's default remote keystore; metadata confirms the Test package and version code 2. The in-place phone installation is awaiting the user's report.
+The first personal APK completed successfully on 2026-10-10 from source commit `37860ce`, with all 10 native Android tests passing (0 failures). Lint, TypeScript, formatting, all 27 JavaScript tests, Android Hermes export, and GitHub Actions passed. EAS reused the existing package's default remote keystore; metadata confirms the Test package and version code 2. After receiving the personal APK, the user reported on 2026-10-10 that everything seems fine and accepted it for personal use. No issue with the update was reported; individual installation-check details were not separately supplied.
 
 ## Install the first personal APK
 

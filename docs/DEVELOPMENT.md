@@ -328,3 +328,9 @@ Validation before packaging: lint, TypeScript, formatting, and all 27 JavaScript
 The [standalone personal APK](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/c249e98b-0b28-432f-89f3-96fe4e185319) finished successfully from `37860ce`. EAS used the existing Test package's default remote keystore; final metadata confirms `com.coolbylaki.pilltracker.test`, version code 2, and the personal profile. All 10 native tests passed (0 failures), and Android packaging completed. Local code checks and all 27 JavaScript tests, resolved Expo config, Android Hermes export, and GitHub Actions also passed.
 
 The APK includes the approved icon, visible Pill Tracker name, no delivery-test panel, and the subtle permission styling. Install over Pill Tracker Test and open once; no server is required. In-place phone installation and preservation of the user's installed data still await the user's report. No additional full-day wait is required before this update.
+
+### Personal APK accepted for use (2026-10-10)
+
+After receiving the personal APK, the user reported that everything seems fine and that they can use it personally. The personal-use checkpoint is accepted based on that overall phone report. Individual history/preferences/icon/panel checks were not separately detailed, and no update issue was reported. There is no outstanding required waiting period.
+
+Next work is optional for the personal app: backup/export and restore, requested usability improvements, or fixes if an issue appears. A public version is a separate future path: separate build identity, backup/data behavior, ads and consent/privacy preparation, current Google Play requirements and store materials, release testing, and explicit publication approval. Do not begin ads or public publishing merely because the personal app is accepted.
