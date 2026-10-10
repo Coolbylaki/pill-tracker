@@ -22,4 +22,10 @@ The built-in ImageGen tool generated the assets. Exact prompts are saved in [Bra
 
 The personal app remains offline and ad-free. No account, cloud database, ads, store submission, or public publishing is part of this checkpoint. Continued ordinary use can reveal issues, but it is not a new release gate imposed after the accepted phone checks.
 
-APK build and update results will be recorded when available. A successful cloud build does not itself establish that the in-place phone installation passed.
+The first personal APK completed successfully on 2026-10-10 from source commit `37860ce`, with all 10 native Android tests passing (0 failures). Lint, TypeScript, formatting, all 27 JavaScript tests, Android Hermes export, and GitHub Actions passed. EAS reused the existing package's default remote keystore; metadata confirms the Test package and version code 2. The in-place phone installation is awaiting the user's report.
+
+## Install the first personal APK
+
+[Install Pill Tracker personal APK](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/c249e98b-0b28-432f-89f3-96fe4e185319).
+
+Install as an update over Pill Tracker Test, then open once and verify existing history/preferences, the new icon/name, and the absence of the test panel. No development server is required. Do not uninstall or clear data.

@@ -322,3 +322,9 @@ A standalone `personal` EAS profile now removes Test from the visible app name a
 The built-in ImageGen tool produced the approved mint/ivory capsule with a dark teal tick. Both final assets are saved in the repository. The adaptive foreground has real transparency and fits within the central Android safe region; the square launcher asset is opaque. See PERSONAL_RELEASE.md for installation and branding details and BRANDING_PROMPTS.md for the exact prompts.
 
 Validation before packaging: lint, TypeScript, formatting, and all 27 JavaScript tests passed, including the new build-identity/flags/version regression. Resolved Expo personal configuration and the Android Hermes bundle export passed. The initial local export hit a sandbox temporary-file permission error; the same export succeeded with normal temporary-directory access. The personal cloud build will run the existing 10 native Android tests before APK packaging; its result and the in-place phone update are not yet claimed passed.
+
+### First personal APK result (2026-10-10)
+
+The [standalone personal APK](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/c249e98b-0b28-432f-89f3-96fe4e185319) finished successfully from `37860ce`. EAS used the existing Test package's default remote keystore; final metadata confirms `com.coolbylaki.pilltracker.test`, version code 2, and the personal profile. All 10 native tests passed (0 failures), and Android packaging completed. Local code checks and all 27 JavaScript tests, resolved Expo config, Android Hermes export, and GitHub Actions also passed.
+
+The APK includes the approved icon, visible Pill Tracker name, no delivery-test panel, and the subtle permission styling. Install over Pill Tracker Test and open once; no server is required. In-place phone installation and preservation of the user's installed data still await the user's report. No additional full-day wait is required before this update.
