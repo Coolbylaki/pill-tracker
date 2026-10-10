@@ -1,6 +1,7 @@
 import { DailyReminderInfo } from '../components/DailyReminderInfo';
 import type { DailyReminderStatus } from '../reminders/dailyReminders';
 import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
+import Constants from 'expo-constants';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Alert,
@@ -29,6 +30,9 @@ import {
 } from '../reminders/permissions';
 import { reminderTimeLabel, routineTimeLabel } from '../reminders/routinePlan';
 import { useTheme, type Palette } from '../theme';
+
+const appVersion = Constants.expoConfig?.version;
+const buildVersion = Constants.expoConfig?.android?.versionCode;
 
 interface Props {
   initial: Preferences;
@@ -206,8 +210,8 @@ export function PreferencesScreen({
             />
           }
           <Text style={styles.copy}>
-            No notification at this time. If you haven’t confirmed, the first reminder follows 1
-            hour later and the critical reminder 6 hours later by default.
+            No notification is sent at pill time. By default, reminders follow 1 hour and 6 hours
+            later if your pills haven’t been recorded.
           </Text>
         </View>
       )}
@@ -225,7 +229,7 @@ export function PreferencesScreen({
               trackColor={{ true: colors.accent }}
             />
           </View>
-          <Text style={styles.copy}>Optional overrides, measured from your daily pill time.</Text>
+          <Text style={styles.copy}>Choose how long after pill time each reminder arrives.</Text>
           <Text style={styles.label}>First reminder · hours later</Text>
           <TextInput
             accessibilityLabel="First reminder delay in hours"
@@ -258,27 +262,30 @@ export function PreferencesScreen({
             />
           }
           <Text style={styles.copy}>
-            The critical reminder must follow the first. Maximum delay: 24 hours.
+            The critical reminder must be later than the first, within 24 hours of pill time.
           </Text>
         </View>
       )}
       {(!onboarding || step >= 1) && (
         <View style={styles.card}>
           <Text style={styles.heading}>
-            {onboarding ? 'Your reminder plan' : 'Preview after saving'}
+            {onboarding ? 'Your reminder plan' : 'Reminder preview'}
           </Text>
           <Text style={styles.copy}>
             {!draft.remindersEnabled
-              ? 'Reminders are switched off.'
+              ? 'Reminders are off.'
               : validPreview
                 ? `First: ${reminderTimeLabel(preview, preview.firstDelayMinutes)}\nCritical: ${reminderTimeLabel(preview, preview.criticalDelayMinutes)}`
                 : 'Enter valid delays to preview your reminder times.'}
           </Text>
           <Text style={styles.copy}>
-            Confirming today cancels today’s reminders. Times that have already passed are skipped.
+            Recording a day cancels its remaining reminders. Times that have already passed are
+            skipped.
           </Text>
           <Text style={styles.notice}>
-            Save your choices to apply this plan. Confirmed days and passed times are skipped.
+            {onboarding
+              ? 'Finish setup to apply these choices.'
+              : 'Save settings to apply these changes.'}
           </Text>
         </View>
       )}
@@ -321,8 +328,7 @@ export function PreferencesScreen({
                 />
               }
               <Text style={styles.copy}>
-                For accurate reminder times, allow this app in Android’s Alarms & reminders
-                settings. Android controls this permission.
+                Allow Alarms & reminders in Android settings for more accurate timing.
               </Text>
               {
                 <ActionButton
@@ -337,8 +343,7 @@ export function PreferencesScreen({
             </>
           )}
           <Text style={styles.copy}>
-            You can continue without permissions and enable them later. Recording your pills always
-            works.
+            You can still record your pills without these permissions and enable them later.
           </Text>
         </View>
       )}
@@ -380,6 +385,19 @@ export function PreferencesScreen({
       ) : (
         <ActionButton label={'Cancel'} onPress={onCancel} primary={false} disabled={busy} />
       )}
+      {!onboarding && (
+        <View style={styles.about}>
+          <Text accessibilityRole="header" style={styles.aboutHeading}>
+            About
+          </Text>
+          <Text style={styles.copy}>
+            Pill Tracker{appVersion ? ` · Version ${appVersion}` : ''}
+            {appVersion && buildVersion ? ` (${buildVersion})` : ''}
+          </Text>
+          <Text style={styles.copy}>Works offline. Your records stay on this device.</Text>
+          <Text style={styles.copy}>Home-screen widget available.</Text>
+        </View>
+      )}
     </ScrollView>
   );
 }
@@ -407,6 +425,13 @@ const makeStyles = (colors: Palette) =>
     },
     heading: { color: colors.text, fontSize: 18, fontWeight: '600' },
     copy: { color: colors.muted, fontSize: 14, lineHeight: 22 },
+    about: {
+      borderTopWidth: StyleSheet.hairlineWidth,
+      borderColor: colors.border,
+      paddingTop: 16,
+      gap: 4,
+    },
+    aboutHeading: { color: colors.secondary, fontSize: 14, fontWeight: '600' },
     notice: { color: colors.accent, fontSize: 13, lineHeight: 21 },
     row: { flexDirection: 'row', gap: 12, alignItems: 'center' },
     grow: { flex: 1 },

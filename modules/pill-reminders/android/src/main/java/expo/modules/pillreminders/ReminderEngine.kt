@@ -166,7 +166,7 @@ object ReminderEngine {
     launch.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
     val content = PendingIntent.getActivity(context, 8200 + reminder.sequence, launch, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
     val date = LocalDate.parse(reminder.routineDate).format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).withLocale(Locale.getDefault()))
-    val body = "Your routine for $date is still unconfirmed. Open to check your record."
+    val body = "Your pills for $date haven’t been recorded. Open to check your record."
     val builder = if (Build.VERSION.SDK_INT >= 26) Notification.Builder(context, CHANNEL) else Notification.Builder(context)
     val notification = builder.setSmallIcon(R.drawable.ic_pill_reminder)
       .setContentTitle(if (reminder.sequence == 1) "Daily pill reminder" else "Critical pill reminder")

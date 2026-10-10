@@ -23,15 +23,15 @@ export function DailyReminderInfo({
           <Text style={styles.copy}>{status.error}</Text>
           {onRetry && status.supported && (
             <Pressable accessibilityRole="button" onPress={onRetry} style={styles.retry}>
-              <Text style={styles.link}>Try updating reminders</Text>
+              <Text style={styles.link}>Update reminders</Text>
             </Pressable>
           )}
         </>
       ) : !status.enabled ? (
-        <Text style={styles.copy}>Switched off in Settings.</Text>
+        <Text style={styles.copy}>Reminders are off.</Text>
       ) : !status.notificationsAllowed ? (
         <Text style={styles.copy}>
-          Notifications are off in Android settings. Your pill recording still works.
+          Notifications are off in Android settings. You can still record your pills.
         </Text>
       ) : (
         <>
@@ -57,13 +57,13 @@ export function DailyReminderInfo({
           })}
           {!status.scheduled.length && (
             <Text style={styles.copy}>
-              No pill reminders are pending. The schedule checks again tomorrow.
+              No reminders scheduled right now. The schedule updates automatically.
             </Text>
           )}
           {!status.exactAllowed && (
             <Text style={styles.copy}>
-              Allow Alarms & reminders in Settings for accurate times. Android may delay reminders
-              without this access.
+              Allow Alarms & reminders in Android settings for more accurate timing. Android may
+              delay reminders without this access.
             </Text>
           )}
         </>

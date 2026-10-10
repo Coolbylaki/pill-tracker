@@ -46,3 +46,7 @@ The [measured-padding APK](https://expo.dev/accounts/coolbylaki/projects/pill-tr
 ## Latest Galaxy A16 calibration build result
 
 The [Galaxy A16 height-calibration APK](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/a7547145-e184-4037-8fd1-68b3c8bd79fe) completed successfully on October 10, 2026, from `a961033`, version code 6, with the existing signing identity. All 19 native tests passed with zero failures, along with 27 JavaScript tests and GitHub checks. The full phone screenshot showed approximate heights of 106px for the reference and 104px for the 51dp pill panel, so the visible panel is now 52dp. Text sizing/spacing and widget behavior are preserved. The final outline alignment awaits the user's phone review.
+
+## Appearance accepted
+
+On October 10, 2026, the user accepted the version-6 widget as-is after discussing the tiny apparent edge difference in the Galaxy A16 screenshots. No further height, padding, or fade changes are requested. Widget behavior and Home-only navigation were already reported passed. The requested About section only mentions widget availability; no widget-help screen is planned.

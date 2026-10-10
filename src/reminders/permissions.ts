@@ -17,7 +17,7 @@ export async function notificationAccess(request = false): Promise<string> {
     permission = await Notifications.requestPermissionsAsync();
   return permission.granted
     ? 'Notifications allowed'
-    : 'Notifications off. You can still record your pills.';
+    : 'Notifications are off. You can still record your pills.';
 }
 
 export async function openAlarmAccess(): Promise<void> {

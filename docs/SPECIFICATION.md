@@ -73,3 +73,7 @@ Multiple medications, dosage guidance, multiple daily routines, subscriptions, c
 9. Change time zone, reboot, or use an evening routine crossing midnight: history and reminders refer to the intended routine date.
 
 10. Install at 17:00 with an 08:00 pill time and confirm today: no notifications for today. Tomorrow defaults to 09:00 and 14:00. Even without confirmation, passed reminder times are skipped.
+
+### Personal Settings About section
+
+A small, muted About footer in Settings shows Pill Tracker's version/build, states that the app works offline and records stay on this device, and notes that a home-screen widget is available. It is not part of first-launch setup. No widget instructions or additional help screen are included. The user accepted the current widget appearance on October 10, 2026.

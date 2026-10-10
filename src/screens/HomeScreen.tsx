@@ -145,14 +145,14 @@ export function HomeScreen({
       dialogRef.current = false;
     };
     Alert.alert(
-      action === 'confirm' ? 'Taken your pills today?' : 'Undo today’s confirmation?',
+      action === 'confirm' ? 'Taken your pills today?' : 'Remove today’s record?',
       action === 'confirm'
         ? 'Confirm only after you’ve taken your pills.'
         : 'This removes today’s record. It doesn’t change any previous day.',
       [
         { text: 'Cancel', style: 'cancel', onPress: dismiss },
         {
-          text: action === 'confirm' ? 'Yes, taken' : 'Undo confirmation',
+          text: action === 'confirm' ? 'Yes, taken' : 'Remove record',
           style: action === 'undo' ? 'destructive' : 'default',
           onPress: () => {
             void write(action, expectedDate);
@@ -253,7 +253,7 @@ export function HomeScreen({
           <Text style={styles.eyebrow}>TODAY</Text>
           <View style={[styles.badge, record && !loading && !error && styles.badgeTaken]}>
             <Text style={[styles.badgeText, record && !loading && !error && styles.badgeTextTaken]}>
-              {loading ? 'Checking' : error ? 'Unavailable' : record ? 'Confirmed' : 'Not recorded'}
+              {loading ? 'Checking' : error ? 'Unavailable' : record ? 'Taken' : 'Not recorded'}
             </Text>
           </View>
         </View>
