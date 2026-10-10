@@ -29,12 +29,16 @@ Android can delay time-based widget refreshes, particularly while idle; the widg
 
 This native change requires a new APK. The personal profile keeps its existing package/signing identity and raises version code to 5 for the measured padding adjustment. Install over the existing personal app without uninstalling or clearing data, then open once. Long-press an empty area of the Android home screen, choose Widgets, find Pill Tracker and drag its widget onto the screen. Launcher menu wording may differ.
 
-Phone review for the refinement: check that the compact translucent panel fits, tapping opens Home without a review card both before and after confirmation, and normal confirmation/Undo still refreshes the widget. Use existing history/settings; do not erase data or delay taking a pill to test the widget. The user has already reported the first widget's taken state, Undo/reminder text and app opening passed; they requested the simpler Home destination and smaller translucent style. Calendar correction/streak and time-dependent launcher updates were not separately reported.
+Current phone review: compare the panel height and text padding with the smoking widget. The user reported the previous update's behavior tests are good, so they do not need to be repeated for this appearance-only adjustment. Calendar correction/streak and time-dependent launcher updates were not separately reported. Use existing history/settings; do not erase data or delay taking a pill to test the widget.
 
 ## First widget build result
 
 The [personal widget APK](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/a97adaf9-9057-4770-b966-8d54e22014c9) completed successfully on October 10, 2026, from `68ebef7`. It uses version code 3 and the existing personal signing key/package. All 19 native tests passed (10 existing tests plus seven widget-state and two widget/database tests), with zero failures. The 27 JavaScript tests, lint, TypeScript, formatting and GitHub checks passed. Physical launcher layout, tapping and widget refresh remain for the user's phone review.
 
-## Latest refinement build result
+## Home-navigation refinement build result
 
 The [compact translucent widget APK](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/c4a5b3e4-27b5-47ed-9746-ea2e727af65f) completed successfully on October 10, 2026, from `a296afa`, version code 4, with the existing signing identity. All 19 native tests passed with zero failures, alongside 27 JavaScript tests and GitHub checks. The first widget's taken state, Undo/reminder text and opening the app passed the user's phone checks. The latest size/transparency and Home-only tap behavior await their review.
+
+## Latest measured-padding build result
+
+The [measured-padding APK](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/41edadec-6df5-4e66-bf7d-1a5b65fd7302) completed successfully on October 10, 2026, from `9745518`, version code 5, with the existing signing identity. All 19 native tests passed with zero failures, alongside 27 JavaScript tests, lint, TypeScript, formatting and GitHub checks. The user's side-by-side crop measured the smoking panel at approximately 440×120px and the previous pill panel at 440×103px. A 51dp panel and 14sp title match the reference height and text scale closely at that screenshot's scale. The previous update's behavior checks are accepted; this appearance match remains subject to the user's phone review.

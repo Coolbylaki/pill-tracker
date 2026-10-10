@@ -36,8 +36,14 @@ Install as an update over Pill Tracker Test, then open once and verify existing 
 
 This build completed on October 10, 2026, from `68ebef7`, with version code 3 and the existing signing key/package. All 19 Android tests passed with zero failures, as did 27 JavaScript tests and GitHub checks. Install over the current personal app and open once. Long-press an empty home-screen area, choose Widgets, find Pill Tracker and drag its widget onto the screen. Phone layout/tap/refresh review is still pending. See [Personal widget](PERSONAL_WIDGET.md) for behavior and review details.
 
-## Latest update: compact translucent widget and Home navigation
+## Compact translucent widget and Home navigation
 
 [Install the refined personal APK](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/c4a5b3e4-27b5-47ed-9746-ea2e727af65f).
 
 Completed on October 10, 2026, from `a296afa`, version code 4, with the existing personal package/signing key. All 19 native tests, 27 JavaScript tests and GitHub checks passed. Install over the current app without uninstalling or clearing data and open once to refresh the widget. The visible widget panel is shorter and translucent; notification/widget taps open Home and the routine-review card is removed. The user already reported the first widget's taken/Undo/reminder-text/app-opening checks passed; the refined style and simpler navigation await phone review.
+
+## Latest update: measured reference size and padding
+
+[Install the widget size/padding update](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/41edadec-6df5-4e66-bf7d-1a5b65fd7302).
+
+Completed on October 10, 2026, from `9745518`, version code 5, using the existing personal package/signing key. All 19 native tests, 27 JavaScript tests and GitHub checks passed. The user reported version 4's behavior tests are good. This update matches the reference's measured height ratio (120px reference versus 103px previous widget at the same width), using a 51dp visible panel and 14sp title. Install over the existing app and open once to refresh the widget. Only a side-by-side appearance check remains for this adjustment.
