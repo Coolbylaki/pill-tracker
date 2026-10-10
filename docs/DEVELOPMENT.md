@@ -372,3 +372,7 @@ The [measured-padding personal APK](https://expo.dev/accounts/coolbylaki/project
 ### Galaxy A16 height calibration (2026-10-10)
 
 The user reported the widget is still a tiny bit shorter and supplied a full 945×2048 screenshot from a Samsung Galaxy A16, then clarified the small missing area is at the top. At the panel centers, image analysis places the smoking background around y=707..813 (106px) and the pill background around y=708..812 (104px). The existing 51dp panel therefore needs approximately one additional dp. Visible/minimum height is now 52dp, with the same centered text, 14sp/12sp type, width, corner radius and translucent background. This expands the outer panel without shifting the text. Personal version code 6 preserves in-place updates. Only the visual calibration changes; native build results follow separately.
+
+### Galaxy A16 calibration APK result (2026-10-10)
+
+The [height-calibrated APK](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/a7547145-e184-4037-8fd1-68b3c8bd79fe) completed successfully from `a961033`, version code 6, with the existing package/signing key. Android compilation/resources and packaging passed; all 19 native tests passed with zero failures. All 27 JavaScript tests, lint, TypeScript, formatting and GitHub checks passed. Install over the current personal app and open once to refresh the widget. The final outline match awaits the user's report; accepted widget/navigation behavior does not require repeating the reminder trial.
