@@ -63,3 +63,11 @@ Source commit `a4f0ff4` completes the requested wording review and small About f
 [Install the personal wording and About update](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/b278c03d-051e-49a6-8f8e-e7a79cf035de).
 
 Completed on October 10, 2026, from `ec026fd`, version code 7, with the existing personal package/signing key. The user explicitly approved the Expo/EAS source upload. All 19 native tests passed with zero failures; Android compilation and packaging succeeded. All 27 JavaScript tests, lint, TypeScript, formatting and GitHub checks passed for the implementation. Install over the current personal app without uninstalling or clearing data. Settings now has a quiet About footer and clearer reminder/permission/preview wording; Home and notification wording is also simplified. The accepted widget appearance is unchanged. Phone review of the new wording/About section remains with the user; the previously accepted reminder and widget checks do not require another full-day trial.
+
+## Version 1.1.0 source release
+
+The final requested personal changes are in source commit `bf7f293`: app/package version 1.1.0, About displays Pill Tracker · v1.1.0, and Home-screen widget available is now at the bottom of Home. Android build code 8 is retained internally for the next compatible APK. All 27 JavaScript tests, lint, TypeScript, formatting and GitHub checks passed.
+
+The Expo/EAS build request was refused because the account's free Android build allowance is exhausted. EAS reported the allowance resets November 1, 2026. No version-1.1.0 APK was built; native build verification remains pending. The existing version-1.0.0/build-7 APK remains the latest installable personal build. No plan upgrade or charge was initiated. GitHub v1.1.0 is a source release with this limitation stated explicitly.
+
+[GitHub personal source release v1.1.0](https://github.com/Coolbylaki/pill-tracker/releases/tag/v1.1.0) was created on the existing private repository, targeting implementation commit `bf7f293`. Its release notes explicitly state that the APK is pending; no APK asset was attached.

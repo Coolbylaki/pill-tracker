@@ -390,3 +390,9 @@ After the automatic approval review blocked uploading private source, the user e
 ### Personal wording and About APK result (2026-10-10)
 
 The [personal polish APK](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/b278c03d-051e-49a6-8f8e-e7a79cf035de) completed successfully from `ec026fd`, version code 7, using the existing signing identity. All 19 native tests passed, zero failures, and Android compilation/packaging succeeded. All 27 JavaScript tests, lint, TypeScript, formatting and GitHub checks passed for implementation commit `a4f0ff4`. The earlier upload block was resolved by the user's explicit approval, and no build work remains blocked. Installation and visual/copy review of the About section remain for the phone; accepted reminder/widget behavior does not require another day-long wait.
+
+### Final personal version 1.1.0 (2026-10-10)
+
+Implementation commit `bf7f293` synchronizes app.json, package.json and root package-lock metadata to 1.1.0. About displays Pill Tracker · v1.1.0 without the Android build code. Widget availability moved to Home's small footer below the on-device-record note. Android version code is 8, with the existing package/signing identity. All 27 JavaScript tests, lint, TypeScript, formatting, diff checks and GitHub checks passed.
+
+The explicitly authorized Expo/EAS build upload succeeded, but the build request was rejected due to the account's exhausted free monthly Android allowance. EAS reports reset on November 1, 2026; no cloud build started and no subscription purchase was made. The final APK and native checks are pending. Existing installed version 1.0.0/build 7 remains available and usable. The requested private GitHub v1.1.0 source release states the missing APK clearly. The user plans to resume the ad-supported version tomorrow; no ads/public-account work was started today.
