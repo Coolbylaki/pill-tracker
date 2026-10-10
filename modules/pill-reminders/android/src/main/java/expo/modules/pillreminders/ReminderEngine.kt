@@ -130,7 +130,7 @@ object ReminderEngine {
       // Retry without posting a notification or replaying expired reminders.
       schedule(context, Instant.now().plusSeconds(3600), 0, Intent(context, ReminderReceiver::class.java))
       throw error
-    }
+    } finally { PillWidget.update(context) }
   }
 
   @Synchronized

@@ -40,6 +40,7 @@ object PillDatabase {
     requireNotNull(open(context, true)).use { database ->
       database.execSQL(sql, parameters.toTypedArray())
     }
+    PillWidget.update(context)
   }
 
   fun query(context: Context, sql: String, parameters: List<String>): List<Map<String, Any?>> =

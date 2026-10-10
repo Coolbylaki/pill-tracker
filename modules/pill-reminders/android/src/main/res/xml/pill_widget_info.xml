@@ -1,0 +1,10 @@
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+  android:minWidth="140dp" android:minHeight="48dp"
+  android:minResizeWidth="140dp" android:minResizeHeight="48dp"
+  android:targetCellWidth="2" android:targetCellHeight="1"
+  android:resizeMode="horizontal|vertical"
+  android:updatePeriodMillis="1800000"
+  android:initialLayout="@layout/pill_widget"
+  android:previewLayout="@layout/pill_widget"
+  android:description="@string/pill_widget_description"
+  android:widgetCategory="home_screen" />

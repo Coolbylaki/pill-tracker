@@ -1,0 +1,5 @@
+<resources>
+  <string name="pill_widget_name">Pill Tracker</string>
+  <string name="pill_widget_setup">Open to set up</string>
+  <string name="pill_widget_description">Daily pill status and recorded-day streak. Tap to open Pill Tracker.</string>
+</resources>
