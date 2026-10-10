@@ -4,7 +4,7 @@ On 2026-10-10, the user accepted the completed overnight cycle and checks on bot
 
 ## Build and update
 
-Run `npm run build:personal` to create a standalone internal APK named **Pill Tracker**, without the delivery-test panel or ads. The profile runs all 10 native Android tests before packaging. JavaScript checks remain `npm run check`.
+Run `npm run build:personal` to create a standalone internal APK named **Pill Tracker**, without the delivery-test panel or ads. The profile now runs all 19 native Android tests before packaging, including nine widget checks. JavaScript checks remain `npm run check`.
 
 The personal profile deliberately keeps `com.coolbylaki.pilltracker.test` and `pill-tracker-test` from the installed Test app. These internal identifiers are retained for an in-place update and compatible notification links; Test is removed from the visible launcher name. The existing EAS signing credentials for that package must be reused. The previous repaired Test APK has version code 1; the first personal APK uses version code 2.
 
@@ -29,3 +29,9 @@ The first personal APK completed successfully on 2026-10-10 from source commit `
 [Install Pill Tracker personal APK](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/c249e98b-0b28-432f-89f3-96fe4e185319).
 
 Install as an update over Pill Tracker Test, then open once and verify existing history/preferences, the new icon/name, and the absence of the test panel. No development server is required. Do not uninstall or clear data.
+
+## Latest update: personal widget
+
+[Install Pill Tracker with the personal widget](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/a97adaf9-9057-4770-b966-8d54e22014c9).
+
+This build completed on October 10, 2026, from `68ebef7`, with version code 3 and the existing signing key/package. All 19 Android tests passed with zero failures, as did 27 JavaScript tests and GitHub checks. Install over the current personal app and open once. Long-press an empty home-screen area, choose Widgets, find Pill Tracker and drag its widget onto the screen. Phone layout/tap/refresh review is still pending. See [Personal widget](PERSONAL_WIDGET.md) for behavior and review details.

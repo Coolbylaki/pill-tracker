@@ -30,3 +30,7 @@ Android can delay time-based widget refreshes, particularly while idle; the widg
 This native change requires a new APK. The personal profile keeps its existing package/signing identity and raises version code to 3. Install over the existing personal app without uninstalling or clearing data, then open once. Long-press an empty area of the Android home screen, choose Widgets, find Pill Tracker and drag its widget onto the screen. Launcher menu wording may differ.
 
 Phone review: check that two lines fit, tap opens the app without recording, confirm updates to a streak, Undo restores the outstanding state, and a deliberate calendar correction recalculates the streak. Use existing history/settings; do not erase data or delay taking a pill to test the widget. Native cloud tests and APK results will be recorded once completed; launcher behavior remains subject to the user's phone check.
+
+## Build result
+
+The [personal widget APK](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/a97adaf9-9057-4770-b966-8d54e22014c9) completed successfully on October 10, 2026, from `68ebef7`. It uses version code 3 and the existing personal signing key/package. All 19 native tests passed (10 existing tests plus seven widget-state and two widget/database tests), with zero failures. The 27 JavaScript tests, lint, TypeScript, formatting and GitHub checks passed. Physical launcher layout, tapping and widget refresh remain for the user's phone review.
