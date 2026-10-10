@@ -19,8 +19,8 @@ test('personal APK upgrades the Test app without changing its storage or notific
     assert.equal(personal.scheme, installed.scheme);
     assert.ok(personal.android.versionCode > installed.android.versionCode);
     assert.ok(
-      personal.android.versionCode > 4,
-      'widget padding update must upgrade the Home-navigation APK',
+      personal.android.versionCode > 5,
+      'widget height calibration must upgrade the measured-padding APK',
     );
     assert.equal(personal.extra.personalBuild, true);
     assert.equal(personal.extra.reminderTests, false);

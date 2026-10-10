@@ -368,3 +368,7 @@ The user reported the latest behavior tests are good and supplied a side-by-side
 ### Measured-padding APK result (2026-10-10)
 
 The [measured-padding personal APK](https://expo.dev/accounts/coolbylaki/projects/pill-tracker/builds/41edadec-6df5-4e66-bf7d-1a5b65fd7302) completed successfully from `9745518`, version code 5, with the existing package/signing key. Android resource compilation and packaging succeeded; all 19 native tests passed, zero failures. The 27 JavaScript tests, lint, TypeScript, formatting and GitHub checks passed. Install over the existing app and open once to refresh the widget. The user's accepted behavior checks do not need repeating for this size/padding-only adjustment; the visual match still awaits their report.
+
+### Galaxy A16 height calibration (2026-10-10)
+
+The user reported the widget is still a tiny bit shorter and supplied a full 945×2048 screenshot from a Samsung Galaxy A16, then clarified the small missing area is at the top. At the panel centers, image analysis places the smoking background around y=707..813 (106px) and the pill background around y=708..812 (104px). The existing 51dp panel therefore needs approximately one additional dp. Visible/minimum height is now 52dp, with the same centered text, 14sp/12sp type, width, corner radius and translucent background. This expands the outer panel without shifting the text. Personal version code 6 preserves in-place updates. Only the visual calibration changes; native build results follow separately.
