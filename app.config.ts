@@ -19,7 +19,6 @@ export default ({ config }: ConfigContext): ExpoConfig => {
       'expo-system-ui',
       '@react-native-community/datetimepicker',
       './plugins/with-reminder-desugaring.cjs',
-      './plugins/with-java-toolchains.cjs',
     ],
     android: {
       ...config.android,
