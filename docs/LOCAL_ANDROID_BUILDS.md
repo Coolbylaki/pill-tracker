@@ -20,6 +20,12 @@ The initial basic Gradle check passed with Studio's bundled Java 25, but Android
 
 `plugins/with-java-toolchains.cjs` now adds Gradle's Foojay resolver convention plugin, pinned to 1.0.0, to generated Android settings. It configures JDK downloads and survives future Expo prebuilds. The local `updateDaemonJvm --jvm-version=17` task passed and generated Java-17 download criteria. Gradle downloaded Temurin 17 into its local JDK cache. All four previously failing Expo modules CMake configuration tasks (arm64-v8a, armeabi-v7a, x86 and x86_64) then passed. All 27 app tests, lint, TypeScript and formatting passed. This repairs project sync; release signing/APK packaging remain separate.
 
+## Windows paths containing spaces
+
+Expo modules core 57.0.21's IDE-only `generateStubPCH` helper splits compiler commands on spaces and replaces header paths with a whitespace-based regular expression. With this repository at `C:/Projects/Pill Tracker`, Studio sync failed because quoted paths were broken. The maintained `scripts/patch-expo-windows-pch.cjs` postinstall script replaces that command handling with Ant's quote-aware argument parser and substitutes complete header arguments. It runs only on Windows, checks the exact supported dependency version/source shape, and is safe to rerun. Review the workaround when upgrading Expo. Linux/EAS builds skip it.
+
+The repaired `:expo-modules-core:generateStubPCH` task, including its four ABI configuration prerequisites, passed in the existing path. This helper creates IDE stubs; the normal native build still regenerates real precompiled headers. No repository move or new application is needed.
+
 ## Remaining signing and packaging work
 
 The generated release configuration still uses the template's debug signing key. Before producing an installable personal update, retrieve and reuse the existing EAS signing key, store it only in ignored local files, and configure release signing. Do not replace it with a newly generated key or ask the user to uninstall the installed app. Verify signing identity, version/package and all native tests before handing over the final APK.
