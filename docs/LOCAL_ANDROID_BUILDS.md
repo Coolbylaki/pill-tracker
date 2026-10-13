@@ -12,7 +12,13 @@ With the bundled Java and SDK paths set for the command, `android/gradlew.bat --
 
 ## Open in Android Studio
 
-Use **Open** on the welcome screen and select `C:/Projects/Pill Tracker/android`. Trust this existing project if prompted and allow Gradle sync to finish. Use the bundled JDK if prompted. Required versions are Android SDK Platform 36, Build Tools 36.0.0 and NDK 27.1.12297006. At setup verification, SDK Platform/Build Tools 34 were installed; Platform/Build Tools 36 still need downloading when the first build or SDK Manager requires them. Gradle can download missing packages with accepted licenses.
+Use **Open** on the welcome screen and select `C:/Projects/Pill Tracker/android`. Trust this existing project if prompted and allow Gradle sync to finish. In Settings > Build, Execution, Deployment > Build Tools > Gradle, set **Gradle JVM criteria > Version 17**. Studio itself continues using its bundled runtime. Required versions are Android SDK Platform 36, Build Tools 36.0.0 and NDK 27.1.12297006. Gradle can download missing SDK packages with accepted licenses.
+
+## Java 17 and native-sync repair
+
+The initial basic Gradle check passed with Studio's bundled Java 25, but Android Studio's native configuration failed: the Prefab tool emitted Java's restricted-native-access warning, which the Android build plugin treated as an error. Selecting Java 17 then failed in `updateDaemonJvm` because toolchain download repositories were not configured.
+
+`plugins/with-java-toolchains.cjs` now adds Gradle's Foojay resolver convention plugin, pinned to 1.0.0, to generated Android settings. It configures JDK downloads and survives future Expo prebuilds. The local `updateDaemonJvm --jvm-version=17` task passed and generated Java-17 download criteria. Gradle downloaded Temurin 17 into its local JDK cache. All four previously failing Expo modules CMake configuration tasks (arm64-v8a, armeabi-v7a, x86 and x86_64) then passed. All 27 app tests, lint, TypeScript and formatting passed. This repairs project sync; release signing/APK packaging remain separate.
 
 ## Remaining signing and packaging work
 
