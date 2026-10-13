@@ -28,3 +28,6 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 android/local.properties
+# Native folders are generated from Expo config for local builds.
+/android/
+/ios/
