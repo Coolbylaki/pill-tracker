@@ -8,7 +8,7 @@ export default ({ config }: ConfigContext): ExpoConfig => {
     ...config,
     name: personal ? 'Pill Tracker' : standaloneTest ? 'Pill Tracker Test' : 'Pill Tracker Dev',
     slug: 'pill-tracker',
-    owner: 'coolbylaki',
+    owner: 'coolbylakis-team',
     icon: './assets/pill-icon.png',
     // Keep the installed Test app's identity and notification links for in-place updates.
     scheme: standalone ? 'pill-tracker-test' : 'pill-tracker-dev',
